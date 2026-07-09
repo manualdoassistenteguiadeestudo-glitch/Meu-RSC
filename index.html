@@ -623,6 +623,145 @@
         @media (min-width: 481px) {
             .hide-desktop { display: none; }
         }
+
+        .rodape {
+            margin-top: 18px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 11px;
+        }
+        @media (min-width: 768px) {
+            .rodape {
+                margin-top: 24px;
+                padding-top: 14px;
+                gap: 10px;
+                font-size: 13px;
+            }
+        }
+
+        .texto-descricao {
+            color: #475569;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        @media (min-width: 768px) {
+            .texto-descricao { font-size: 15px; }
+        }
+
+        .escolaridade-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e4a7a;
+        }
+        @media (min-width: 768px) {
+            .escolaridade-label { font-size: 13px; }
+        }
+
+        .pontuacao-grande {
+            font-size: 26px;
+            margin-left: 6px;
+            color: #0a3b5c;
+        }
+        @media (min-width: 768px) { .pontuacao-grande { font-size: 32px; } }
+
+        .nivel-grande {
+            font-size: 20px;
+            margin-left: 6px;
+            color: #0a6b8a;
+        }
+        @media (min-width: 768px) { .nivel-grande { font-size: 24px; } }
+
+        .criterio-grande {
+            font-size: 20px;
+            margin-left: 6px;
+        }
+        @media (min-width: 768px) { .criterio-grande { font-size: 24px; } }
+
+        .elegibilidade-titulo {
+            font-size: 12px;
+        }
+        @media (min-width: 768px) { .elegibilidade-titulo { font-size: 15px; } }
+
+        .elegibilidade-desc {
+            font-size: 12px;
+            color: #475569;
+        }
+        @media (min-width: 768px) { .elegibilidade-desc { font-size: 14px; } }
+
+        .status-badge-pequeno {
+            font-size: 11px;
+            padding: 2px 12px;
+        }
+        @media (min-width: 768px) {
+            .status-badge-pequeno { font-size: 14px; padding: 4px 16px; }
+        }
+
+        .status-badge-grande {
+            font-size: 14px;
+            padding: 6px 18px;
+        }
+        @media (min-width: 768px) {
+            .status-badge-grande { font-size: 18px; padding: 8px 24px; }
+        }
+
+        .meta-descricao {
+            font-size: 12px;
+            flex: 1;
+        }
+        @media (min-width: 768px) { .meta-descricao { font-size: 14px; } }
+
+        .meta-como {
+            font-size: 12px;
+            color: #475569;
+            padding: 3px 0 0 60px;
+        }
+        @media (min-width: 768px) {
+            .meta-como { font-size: 13px; padding: 4px 0 0 72px; }
+        }
+
+        .diagnostico-titulo {
+            font-size: 16px;
+            color: #0a3b5c;
+            margin-bottom: 8px;
+        }
+        @media (min-width: 768px) {
+            .diagnostico-titulo { font-size: 18px; margin-bottom: 10px; }
+        }
+
+        .diagnostico-desc {
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 10px;
+        }
+        @media (min-width: 768px) { .diagnostico-desc { font-size: 14px; margin-bottom: 14px; } }
+
+        .texto-icone {
+            font-size: 40px;
+            color: #0b6e4f;
+        }
+        @media (min-width: 768px) { .texto-icone { font-size: 48px; } }
+
+        .meta-nivel {
+            font-weight: 700;
+            width: 50px;
+            font-size: 13px;
+        }
+        @media (min-width: 768px) { .meta-nivel { width: 60px; font-size: 14px; } }
+
+        .chip-status {
+            font-size: 11px;
+        }
+        @media (min-width: 768px) { .chip-status { font-size: 12px; } }
+
+        .checklist-item {
+            font-size: 13px;
+            padding: 2px 0;
+        }
+        @media (min-width: 768px) { .checklist-item { font-size: 14px; } }
     </style>
 </head>
 <body>
@@ -659,8 +798,7 @@
         <div class="card-header" style="margin-bottom: 6px;">
             <i class="fas fa-graduation-cap"></i> Qual o nível de escolaridade <strong>EXIGIDO PARA O SEU CARGO</strong>?
         </div>
-        <p style="color: #475569; margin-bottom: 10px; font-size: 13px;">
-            @media (min-width: 768px) { font-size: 15px; }
+        <p class="texto-descricao">
             Esta informação é fundamental para determinar seu enquadramento inicial no RSC-PCCTAE, conforme o <strong>Art. 5º, §1º do Decreto nº 13.048/2026</strong>.
         </p>
         
@@ -720,21 +858,20 @@
                 <div class="flex-between">
                     <div>
                         <span class="chip">Pontuação Total</span>
-                        <strong style="font-size: 26px; margin-left: 6px; color: #0a3b5c;">{{ pontosTotais }}</strong>
+                        <strong class="pontuacao-grande">{{ pontosTotais }}</strong>
                     </div>
                     <div>
                         <span class="chip">Nível Atual</span>
-                        <strong style="font-size: 20px; margin-left: 6px; color: #0a6b8a;">{{ nivelAlcancado }}</strong>
+                        <strong class="nivel-grande">{{ nivelAlcancado }}</strong>
                     </div>
                     <div>
                         <span class="chip">Critérios</span>
-                        <strong style="font-size: 20px; margin-left: 6px;">{{ criteriosAtendidos }}</strong>
+                        <strong class="criterio-grande">{{ criteriosAtendidos }}</strong>
                     </div>
                 </div>
 
                 <div style="background: #dbeafe; border-radius: 8px; padding: 6px 12px; margin-top: 6px; font-size: 11px;">
-                    @media (min-width: 768px) { font-size: 13px; padding: 8px 14px; margin-top: 8px; }
-                    <span style="font-weight: 600; color: #1e4a7a;">
+                    <span class="escolaridade-label">
                         <i class="fas fa-graduation-cap"></i> Escolaridade exigida: 
                         <strong>{{ nivelBase }} – {{ nivelBaseDescricao }}</strong>
                         <span style="font-weight: 400; font-size: 10px; margin-left: 6px; background: white; padding: 2px 8px; border-radius: 40px;">
@@ -746,15 +883,13 @@
                 <div class="elegibilidade-box" style="margin-top: 8px; border-color: {{ elegibilidadeInfo.cor }};">
                     <div class="flex-between">
                         <div>
-                            <h4 style="color: {{ elegibilidadeInfo.cor }}; font-size: 12px;">
-                                @media (min-width: 768px) { font-size: 15px; }
+                            <h4 class="elegibilidade-titulo" style="color: {{ elegibilidadeInfo.cor }};">
                                 <i class="fas" :class="elegibilidadeInfo.icone"></i>
                                 {{ elegibilidadeInfo.titulo }}
                             </h4>
-                            <p style="font-size: 12px; color: #475569;">{{ elegibilidadeInfo.descricao }}</p>
+                            <p class="elegibilidade-desc">{{ elegibilidadeInfo.descricao }}</p>
                         </div>
-                        <span class="status-badge" :class="elegibilidadeInfo.classe" style="font-size: 11px; padding: 2px 12px;">
-                            @media (min-width: 768px) { font-size: 14px; padding: 4px 16px; }
+                        <span class="status-badge status-badge-pequeno" :class="elegibilidadeInfo.classe">
                             {{ elegibilidadeInfo.status }}
                         </span>
                     </div>
@@ -794,27 +929,25 @@
         <div class="card" style="margin-bottom: 14px; border: 2px solid #0a6b8a; background: #f8faff;">
             <div class="card-header"><i class="fas fa-flag-checkered"></i> Metas para os próximos níveis</div>
             <p style="font-size: 12px; color: #475569; margin-bottom: 8px;">
-                @media (min-width: 768px) { font-size: 14px; margin-bottom: 10px; }
                 <i class="fas fa-info-circle" style="color: #0a6b8a;"></i>
                 Clique em <strong>"Faltam..."</strong> para ver detalhes sobre os critérios e como atingi-los.
             </p>
             
             <div v-for="meta in metasProximosNiveis" :key="meta.nivel" class="meta-box">
                 <div class="meta-item">
-                    <span class="nivel" :style="{ color: meta.cor }">{{ meta.nivel }}</span>
+                    <span class="meta-nivel" :style="{ color: meta.cor }">{{ meta.nivel }}</span>
                     <span class="status-icon">
                         <i class="fas" :class="meta.atendido ? 'fa-check-circle' : 'fa-circle'" 
                            :style="{ color: meta.atendido ? '#0b6e4f' : '#94a3b8' }"></i>
                     </span>
-                    <span style="font-size: 12px; flex: 1;">{{ meta.descricao }}</span>
+                    <span class="meta-descricao">{{ meta.descricao }}</span>
                     <span class="faltam" :style="{ color: meta.atendido ? '#0b6e4f' : '#b45309' }" 
                           @click="abrirDetalheCriterio(meta)" v-if="!meta.atendido">
                         {{ meta.faltam }}
                     </span>
                     <span v-else style="font-weight: 600; color: #0b6e4f; font-size: 12px;">✅ Atendido</span>
                 </div>
-                <div v-if="!meta.atendido && meta.comoConseguir" style="font-size: 12px; color: #475569; padding: 3px 0 0 60px;">
-                    @media (min-width: 768px) { font-size: 13px; padding: 4px 0 0 72px; }
+                <div v-if="!meta.atendido && meta.comoConseguir" class="meta-como">
                     <i class="fas fa-lightbulb" style="color: #b45309;"></i>
                     {{ meta.comoConseguir }}
                 </div>
@@ -834,11 +967,10 @@
                 </div>
 
                 <div v-if="passoAtual < requisitos.length">
-                    <h3 style="margin-bottom: 8px; color: #0a3b5c; font-size: 16px;">
-                        @media (min-width: 768px) { font-size: 18px; margin-bottom: 10px; }
+                    <h3 class="diagnostico-titulo">
                         <i class="fas fa-chevron-right"></i> {{ requisitos[passoAtual].titulo }}
                     </h3>
-                    <p style="color: #475569; margin-bottom: 10px; font-size: 13px;">{{ requisitos[passoAtual].descricao }}</p>
+                    <p class="diagnostico-desc">{{ requisitos[passoAtual].descricao }}</p>
 
                     <div v-for="(pergunta, idx) in requisitos[passoAtual].perguntas" :key="idx" class="question">
                         <div class="question-header">
@@ -887,7 +1019,7 @@
                 </div>
 
                 <div v-else class="text-center" style="padding: 16px;">
-                    <i class="fas fa-check-circle" style="font-size: 40px; color: #0b6e4f;"></i>
+                    <i class="fas fa-check-circle texto-icone"></i>
                     <h3 style="margin: 10px 0;">Diagnóstico concluído!</h3>
                     <button class="btn btn-success" @click="finalizarDiagnostico">
                         <i class="fas fa-chart-bar"></i> Ver resultado completo
@@ -912,8 +1044,7 @@
                 </div>
 
                 <div style="background: #dbeafe; border-radius: 8px; padding: 6px 12px; margin: 6px 0; font-size: 11px;">
-                    @media (min-width: 768px) { font-size: 13px; padding: 8px 14px; margin: 8px 0; }
-                    <span style="font-weight: 600; color: #1e4a7a;">
+                    <span class="escolaridade-label">
                         <i class="fas fa-graduation-cap"></i> Escolaridade exigida: 
                         <strong>{{ nivelBase }} – {{ nivelBaseDescricao }}</strong>
                         <span style="font-weight: 400; font-size: 10px; margin-left: 6px; background: white; padding: 2px 8px; border-radius: 40px;">
@@ -925,15 +1056,14 @@
                 <div class="elegibilidade-box" style="border-color: {{ elegibilidadeInfo.cor }}; background: white;">
                     <div class="flex-between">
                         <div>
-                            <h4 style="color: {{ elegibilidadeInfo.cor }}; font-size: 14px;">
+                            <h4 class="elegibilidade-titulo" style="color: {{ elegibilidadeInfo.cor }}; font-size: 14px;">
                                 @media (min-width: 768px) { font-size: 18px; }
                                 <i class="fas" :class="elegibilidadeInfo.icone"></i>
                                 {{ elegibilidadeInfo.titulo }}
                             </h4>
-                            <p style="font-size: 13px; color: #475569;">{{ elegibilidadeInfo.descricao }}</p>
+                            <p class="elegibilidade-desc">{{ elegibilidadeInfo.descricao }}</p>
                         </div>
-                        <span class="status-badge" :class="elegibilidadeInfo.classe" style="font-size: 14px; padding: 6px 18px;">
-                            @media (min-width: 768px) { font-size: 18px; padding: 8px 24px; }
+                        <span class="status-badge status-badge-grande" :class="elegibilidadeInfo.classe">
                             {{ elegibilidadeInfo.status }}
                         </span>
                     </div>
@@ -943,7 +1073,7 @@
                     <div><span class="chip">Pontuação total</span> <strong style="font-size: 22px; margin-left: 6px;">{{ pontosTotais }}</strong></div>
                     <div><span class="chip">Critérios específicos</span> <strong style="font-size: 22px; margin-left: 6px;">{{ criteriosAtendidos }}</strong></div>
                     <div><span class="chip">Nível RSC alcançado</span> <strong style="font-size: 22px; margin-left: 6px; color: #0a3b5c;">{{ nivelAlcancado }}</strong></div>
-                    <div><span class="chip">Status</span> <span class="status-badge" :class="statusClass" style="font-size: 12px; padding: 2px 12px;">{{ statusTexto }}</span></div>
+                    <div><span class="chip">Status</span> <span class="status-badge status-badge-pequeno" :class="statusClass">{{ statusTexto }}</span></div>
                 </div>
 
                 <div style="margin-top: 10px;">
@@ -1010,7 +1140,7 @@
                 </div>
 
                 <div style="background: #dbeafe; border-radius: 8px; padding: 6px 12px; margin-bottom: 10px; font-size: 12px;">
-                    <span style="font-weight: 600; color: #1e4a7a;">
+                    <span class="escolaridade-label">
                         <i class="fas fa-graduation-cap"></i> Escolaridade exigida: 
                         <strong>{{ nivelBase }} – {{ nivelBaseDescricao }}</strong>
                     </span>
@@ -1025,7 +1155,7 @@
                             </h4>
                             <p style="font-size: 13px; color: #475569;">{{ elegibilidadeInfo.descricao }}</p>
                         </div>
-                        <span class="status-badge" :class="elegibilidadeInfo.classe" style="font-size: 16px; padding: 6px 18px;">
+                        <span class="status-badge status-badge-grande" :class="elegibilidadeInfo.classe">
                             {{ elegibilidadeInfo.status }}
                         </span>
                     </div>
@@ -1035,7 +1165,7 @@
                     <div class="flex-between">
                         <div><span class="chip">Nível Atual</span> <strong style="font-size: 24px; color: #0a3b5c; margin-left: 6px;">{{ nivelAlcancado }}</strong></div>
                         <div><span class="chip">Pontuação</span> <strong style="font-size: 24px; margin-left: 6px;">{{ pontosTotais }}</strong></div>
-                        <div><span class="status-badge" :class="statusClass" style="font-size: 12px; padding: 2px 12px;">{{ statusTexto }}</span></div>
+                        <div><span class="status-badge status-badge-pequeno" :class="statusClass">{{ statusTexto }}</span></div>
                     </div>
                 </div>
 
@@ -1047,18 +1177,18 @@
                     </p>
                     <div v-for="meta in metasProximosNiveis" :key="meta.nivel" style="padding: 6px 0; border-bottom: 1px solid #f1f5f9;">
                         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                            <span style="font-weight: 700; width: 50px; font-size: 13px; color: {{ meta.cor }};">{{ meta.nivel }}</span>
-                            <span class="chip" :class="meta.atendido ? 'chip-green' : 'chip-yellow'" style="font-size: 11px;">
+                            <span class="meta-nivel" style="color: {{ meta.cor }};">{{ meta.nivel }}</span>
+                            <span class="chip chip-status" :class="meta.atendido ? 'chip-green' : 'chip-yellow'">
                                 {{ meta.atendido ? '✅ Alcançado' : '⏳ Pendente' }}
                             </span>
-                            <span style="font-size: 12px; flex: 1;">{{ meta.descricao }}</span>
+                            <span class="meta-descricao">{{ meta.descricao }}</span>
                             <span class="faltam" style="font-weight: 600; font-size: 12px; color: {{ meta.atendido ? '#0b6e4f' : '#b45309' }}; cursor: pointer; text-decoration: underline;"
                                   @click="abrirDetalheCriterio(meta)" v-if="!meta.atendido">
                                 {{ meta.faltam }}
                             </span>
                             <span v-else style="font-weight: 600; color: #0b6e4f; font-size: 12px;">✅ Atendido</span>
                         </div>
-                        <div v-if="!meta.atendido && meta.comoConseguir" style="font-size: 12px; color: #475569; padding: 3px 0 0 58px;">
+                        <div v-if="!meta.atendido && meta.comoConseguir" class="meta-como">
                             <i class="fas fa-lightbulb" style="color: #b45309;"></i> {{ meta.comoConseguir }}
                         </div>
                     </div>
@@ -1108,7 +1238,7 @@
 
                 <div style="margin-top: 10px; background: #f1f5f9; border-radius: 10px; padding: 10px 14px;">
                     <h5 style="margin-bottom: 4px; font-size: 14px;"><i class="fas fa-clipboard-check"></i> Checklist para próximo nível</h5>
-                    <div v-for="item in checklist" :key="item.texto" style="font-size: 13px; padding: 2px 0;">
+                    <div v-for="item in checklist" :key="item.texto" class="checklist-item">
                         <i class="fas" :class="item.feito ? 'fa-check-circle' : 'fa-circle'" 
                            :style="{ color: item.feito ? '#0b6e4f' : '#94a3b8' }"></i>
                         {{ item.texto }}
@@ -1180,8 +1310,7 @@
     </div>
 
     <!-- RODAPÉ -->
-    <div style="margin-top: 18px; border-top: 1px solid #e2e8f0; padding-top: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px;">
-        @media (min-width: 768px) { font-size: 13px; margin-top: 24px; padding-top: 14px; gap: 10px; }
+    <div class="rodape">
         <div>
             <span class="chip"><i class="fas fa-clipboard-check"></i> Checklist</span>
             <span class="chip chip-green" v-if="diagnosticoConcluido"><i class="fas fa-check"></i> Diagnóstico OK</span>
