@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Meu RSC · Dashboard Completo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4fa;
+            color: #1e293b;
+            padding: 12px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,20,50,0.10);
+            padding: 20px 18px;
+        }
+        @media (min-width: 768px) {
+            body { padding: 20px; }
+            .container { padding: 24px 28px; border-radius: 32px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 14px 12px; border-radius: 18px; }
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #e9edf4;
+            padding-bottom: 14px;
+            gap: 8px;
+        }
+        @media (max-width: 480px) {
+            .app-header { flex-direction: column; align-items: stretch; gap: 6px; }
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .logo-icon {
+            background: #0a3b5c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+        @media (min-width: 768px) {
+            .logo-icon { width: 44px; height: 44px; font-size: 22px; border-radius: 14px; }
+        }
+        .logo-text { font-weight: 700; font-size: 20px; letter-spacing: -0.3px; }
+        @media (min-width: 768px) { .logo-text { font-size: 24px; } }
+        .logo-text span { color: #0a6b8a; }
+        
+        .logo-taes {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: #f8fafc;
+            padding: 3px 10px 3px 8px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            font-weight: 600;
+            font-size: 11px;
+            color: #0a3b5c;
+        }
+        @media (min-width: 768px) {
+            .logo-taes { padding: 4px 14px 4px 10px; font-size: 13px; gap: 6px; }
+        }
+        .logo-taes i { font-size: 16px; color: #0a6b8a; }
+        @media (min-width: 768px) { .logo-taes i { font-size: 20px; } }
+        .logo-taes small { font-weight: 400; font-size: 9px; color: #64748b; }
+        @media (min-width: 768px) { .logo-taes small { font-size: 10px; } }
+        
+        .logo-selo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #0a3b5c 0%, #0a6b8a 100%);
+            padding: 4px 12px 4px 10px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(10,59,92,0.25);
+        }
+        @media (min-width: 768px) {
+            .logo-selo { padding: 6px 16px 6px 12px; font-size: 13px; gap: 8px; }
+        }
+        .logo-selo i { font-size: 14px; color: #fcd34d; }
+        @media (min-width: 768px) { .logo-selo i { font-size: 18px; } }
+        .logo-selo small { font-weight: 400; font-size: 9px; opacity: 0.8; }
+        @media (min-width: 768px) { .logo-selo small { font-size: 10px; } }
+        
+        .slogan {
+            font-size: 11px;
+            color: #475569;
+            background: #eef2f6;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        @media (min-width: 768px) { .slogan { font-size: 14px; padding: 6px 16px; } }
+        .badge-version {
+            background: #dbeafe;
+            color: #1e4a7a;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 40px;
+        }
+        @media (min-width: 768px) { .badge-version { font-size: 12px; padding: 4px 12px; } }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+            touch-action: manipulation;
+        }
+        @media (min-width: 768px) {
+            .btn { padding: 10px 20px; font-size: 14px; gap: 8px; }
+        }
+        .btn-primary { background: #0a3b5c; color: white; }
+        .btn-primary:hover { background: #0f4a70; box-shadow: 0 6px 14px rgba(10,59,92,0.25); }
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-success { background: #0b6e4f; color: white; }
+        .btn-success:hover { background: #0f825e; }
+        .btn-success:active { transform: scale(0.97); }
+        .btn-warning { background: #b45309; color: white; }
+        .btn-warning:hover { background: #b45f1a; }
+        .btn-outline { background: transparent; border: 1px solid #d0d9e6; color: #1e293b; }
+        .btn-outline:hover { background: #f1f5f9; }
+        .btn-danger { background: #b91c1c; color: white; }
+        .btn-danger:hover { background: #991b1b; }
+        .btn-info { background: #0a6b8a; color: white; }
+        .btn-info:hover { background: #0a7a9e; }
+        .btn-sm { padding: 5px 12px; font-size: 11px; }
+        @media (min-width: 768px) { .btn-sm { padding: 6px 14px; font-size: 13px; } }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-whatsapp:hover { background: #1da851; }
+        .btn-whatsapp:active { transform: scale(0.97); }
+        
+        .btn-info-small {
+            background: #dbeafe;
+            color: #1e4a7a;
+            border: none;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            touch-action: manipulation;
+        }
+        @media (min-width: 768px) { .btn-info-small { width: 30px; height: 30px; font-size: 14px; } }
+        .btn-info-small:hover { background: #0a6b8a; color: white; }
+        .btn-info-small.active { background: #0a6b8a; color: white; }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        @media (min-width: 768px) { .dashboard-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 16px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        @media (min-width: 768px) {
+            .card { padding: 18px 22px; border-radius: 20px; }
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #0b2a3e;
+            margin-bottom: 10px;
+        }
+        @media (min-width: 768px) {
+            .card-header { gap: 10px; font-size: 16px; margin-bottom: 14px; }
+        }
+        .card-header i { color: #0a6b8a; font-size: 16px; width: 20px; }
+        @media (min-width: 768px) { .card-header i { font-size: 18px; width: 24px; } }
+
+        .question {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border-left: 3px solid #0a6b8a;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .question { padding: 14px 16px; margin-bottom: 12px; border-left: 4px solid #0a6b8a; border-radius: 12px; }
+        }
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            margin-bottom: 3px;
+        }
+        .question label { font-weight: 600; display: block; flex: 1; font-size: 13px; }
+        @media (min-width: 768px) { .question label { font-size: 14px; } }
+        .question .desc { font-size: 12px; color: #475569; margin-bottom: 6px; }
+        @media (min-width: 768px) { .question .desc { font-size: 13px; margin-bottom: 8px; } }
+        .question input, .question select {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #d0d9e6;
+            font-size: 13px;
+            width: 100%;
+            max-width: 150px;
+            -webkit-appearance: none;
+        }
+        @media (min-width: 768px) {
+            .question input, .question select { padding: 6px 12px; font-size: 14px; max-width: 200px; border-radius: 8px; }
+        }
+        .question input[type="number"] { max-width: 80px; }
+        @media (min-width: 768px) { .question input[type="number"] { max-width: 100px; } }
+        .question .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .question .pontos-info {
+            background: #dbeafe;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #1e4a7a;
+        }
+        @media (min-width: 768px) { .question .pontos-info { font-size: 13px; padding: 2px 12px; } }
+
+        .chip {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 500;
+            background: #e9edf4;
+        }
+        @media (min-width: 768px) { .chip { padding: 3px 12px; font-size: 12px; } }
+        .chip-green { background: #d1fae5; color: #065f46; }
+        .chip-yellow { background: #fef3c7; color: #92400e; }
+        .chip-blue { background: #dbeafe; color: #1e4a7a; }
+        .chip-red { background: #fee2e2; color: #991b1b; }
+        .chip-purple { background: #ede9fe; color: #5b21b6; }
+        .chip-gold { background: #fef3c7; color: #92400e; font-weight: 700; }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        @media (min-width: 768px) { .status-badge { padding: 4px 16px; font-size: 14px; } }
+        .status-muito-alta { background: #d1fae5; color: #065f46; }
+        .status-media { background: #fef3c7; color: #92400e; }
+        .status-baixa { background: #fee2e2; color: #991b1b; }
+        .status-elegivel { background: #d1fae5; color: #065f46; border: 2px solid #0b6e4f; }
+        .status-nao-elegivel { background: #fee2e2; color: #991b1b; border: 2px solid #b91c1c; }
+
+        .progress-bar-bg {
+            background: #e9edf4;
+            height: 6px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 3px;
+        }
+        @media (min-width: 768px) { .progress-bar-bg { height: 8px; margin-top: 4px; } }
+        .progress-fill {
+            height: 6px;
+            border-radius: 12px;
+            background: #0a6b8a;
+            transition: width 0.5s ease;
+        }
+        @media (min-width: 768px) { .progress-fill { height: 8px; } }
+
+        .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .mt-12 { margin-top: 10px; }
+        @media (min-width: 768px) { .mt-12 { margin-top: 12px; } }
+        .text-center { text-align: center; }
+
+        .requisito-tag {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 3px;
+        }
+        @media (min-width: 768px) {
+            .requisito-tag { padding: 8px 12px; font-size: 13px; gap: 8px; margin-bottom: 4px; border-radius: 10px; }
+        }
+        .requisito-tag i { color: #0a6b8a; width: 16px; }
+        @media (min-width: 768px) { .requisito-tag i { width: 18px; } }
+        .badge-pontos {
+            margin-left: auto;
+            background: #dbeafe;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        @media (min-width: 768px) { .badge-pontos { font-size: 13px; padding: 2px 12px; } }
+
+        .step-indicator {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        @media (min-width: 768px) { .step-indicator { gap: 6px; margin-bottom: 14px; } }
+        .step-dot {
+            padding: 3px 8px;
+            border-radius: 40px;
+            background: #e9edf4;
+            font-size: 10px;
+            font-weight: 500;
+        }
+        @media (min-width: 768px) { .step-dot { padding: 4px 12px; font-size: 12px; } }
+        .step-dot.active { background: #0a3b5c; color: white; }
+        .step-dot.done { background: #d1fae5; color: #065f46; }
+
+        .situacao-modal, .detalhe-criterio-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 12px;
+        }
+        @media (min-width: 768px) { .situacao-modal, .detalhe-criterio-modal { padding: 20px; } }
+        .situacao-content, .detalhe-criterio-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 750px;
+            width: 100%;
+            max-height: 92vh;
+            overflow-y: auto;
+            padding: 20px 18px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        @media (min-width: 768px) {
+            .situacao-content, .detalhe-criterio-content { padding: 30px 35px; border-radius: 28px; max-height: 90vh; }
+        }
+        .situacao-content::-webkit-scrollbar, .detalhe-criterio-content::-webkit-scrollbar { width: 4px; }
+        @media (min-width: 768px) { .situacao-content::-webkit-scrollbar, .detalhe-criterio-content::-webkit-scrollbar { width: 6px; } }
+        .situacao-content::-webkit-scrollbar-thumb, .detalhe-criterio-content::-webkit-scrollbar-thumb { background: #d0d9e6; border-radius: 10px; }
+
+        .memorial-preview {
+            background: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            border-left: 3px solid #0a6b8a;
+            max-height: 120px;
+            overflow: hidden;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .memorial-preview { padding: 14px 18px; font-size: 14px; border-radius: 16px; max-height: 150px; border-left: 4px solid #0a6b8a; }
+        }
+        .memorial-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, #f8fafc);
+        }
+        @media (min-width: 768px) { .memorial-preview::after { height: 40px; } }
+
+        .hidden { display: none; }
+
+        .recomendacao-box {
+            background: #f0f7ff;
+            border-radius: 12px;
+            padding: 10px 14px;
+            border: 1px solid #d0e0f0;
+            font-size: 13px;
+        }
+        @media (min-width: 768px) { .recomendacao-box { padding: 14px 18px; font-size: 14px; border-radius: 14px; } }
+
+        .info-tooltip {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-top: 6px;
+            border: 1px solid #dbeafe;
+            font-size: 12px;
+            color: #1e293b;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .info-tooltip { padding: 12px 16px; margin-top: 8px; font-size: 13px; border-radius: 10px; }
+        }
+        .info-tooltip.visible { display: block; }
+        .info-tooltip strong { color: #0a3b5c; }
+        .info-tooltip .decreto-ref {
+            background: #dbeafe;
+            padding: 2px 8px;
+            border-radius: 40px;
+            font-size: 11px;
+            display: inline-block;
+            margin-top: 3px;
+        }
+        @media (min-width: 768px) { .info-tooltip .decreto-ref { font-size: 12px; padding: 2px 10px; margin-top: 4px; } }
+
+        .elegibilidade-box {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 10px 14px;
+            border: 2px solid #d0e0f0;
+            margin-top: 8px;
+        }
+        @media (min-width: 768px) {
+            .elegibilidade-box { padding: 14px 18px; border-radius: 14px; margin-top: 10px; }
+        }
+        .elegibilidade-box h4 { font-size: 13px; margin-bottom: 4px; }
+        @media (min-width: 768px) { .elegibilidade-box h4 { font-size: 15px; margin-bottom: 6px; } }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (min-width: 768px) { .grid-2 { gap: 14px; } }
+        @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+
+        .nivel-base-box {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f0fe 100%);
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 2px solid #0a6b8a;
+            margin-bottom: 14px;
+        }
+        @media (min-width: 768px) {
+            .nivel-base-box { padding: 20px 24px; border-radius: 16px; margin-bottom: 16px; }
+        }
+        .nivel-base-select {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 2px solid #d0d9e6;
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+        @media (min-width: 768px) { .nivel-base-select { padding: 10px 16px; font-size: 16px; border-radius: 10px; } }
+        .nivel-base-select:focus { border-color: #0a6b8a; outline: none; }
+        
+        .nivel-explicacao {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 10px 14px;
+            border-left: 3px solid #b45309;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        @media (min-width: 768px) {
+            .nivel-explicacao { padding: 12px 16px; font-size: 14px; margin-top: 10px; border-radius: 12px; border-left: 4px solid #b45309; }
+        }
+        .nivel-explicacao strong { color: #0a3b5c; }
+        .nivel-explicacao .exemplo {
+            background: #e9edf4;
+            padding: 2px 8px;
+            border-radius: 40px;
+            font-size: 11px;
+            display: inline-block;
+            margin-top: 3px;
+        }
+        @media (min-width: 768px) { .nivel-explicacao .exemplo { font-size: 12px; padding: 2px 10px; margin-top: 4px; } }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        @media (min-width: 768px) { .header-right { gap: 10px; } }
+        @media (max-width: 480px) { .header-right { justify-content: center; } }
+
+        .meta-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            margin-top: 6px;
+        }
+        @media (min-width: 768px) {
+            .meta-box { padding: 12px 16px; border-radius: 12px; margin-top: 8px; }
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            border-bottom: 1px solid #f1f5f9;
+            flex-wrap: wrap;
+        }
+        .meta-item:last-child { border-bottom: none; }
+        .meta-item .nivel {
+            font-weight: 700;
+            width: 50px;
+            font-size: 12px;
+        }
+        @media (min-width: 768px) { .meta-item .nivel { width: 60px; font-size: 14px; } }
+        .meta-item .faltam {
+            font-weight: 600;
+            font-size: 12px;
+            min-width: 70px;
+            text-align: right;
+            cursor: pointer;
+            color: #b45309;
+        }
+        @media (min-width: 768px) { .meta-item .faltam { font-size: 14px; min-width: 80px; } }
+        .meta-item .faltam:hover { text-decoration: underline; }
+        .meta-item .status-icon { width: 20px; text-align: center; }
+        @media (min-width: 768px) { .meta-item .status-icon { width: 24px; } }
+
+        .detalhe-criterio-content .criterio-item {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-left: 3px solid #0a6b8a;
+        }
+        @media (min-width: 768px) {
+            .detalhe-criterio-content .criterio-item { padding: 10px 14px; margin-bottom: 8px; border-radius: 10px; border-left: 3px solid #0a6b8a; }
+        }
+        .detalhe-criterio-content .criterio-item .nome { font-weight: 600; font-size: 13px; }
+        @media (min-width: 768px) { .detalhe-criterio-content .criterio-item .nome { font-size: 14px; } }
+        .detalhe-criterio-content .criterio-item .como { font-size: 12px; color: #475569; margin-top: 3px; }
+        @media (min-width: 768px) { .detalhe-criterio-content .criterio-item .como { font-size: 13px; margin-top: 4px; } }
+        .detalhe-criterio-content .criterio-item .exemplo {
+            font-size: 11px;
+            color: #64748b;
+            background: #eef2f6;
+            padding: 3px 8px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 3px;
+        }
+        @media (min-width: 768px) {
+            .detalhe-criterio-content .criterio-item .exemplo { font-size: 12px; padding: 4px 10px; margin-top: 4px; }
+        }
+
+        .whatsapp-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        @media (min-width: 768px) { .whatsapp-btn-container { margin-top: 16px; } }
+        
+        .btn-whatsapp-large {
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            transition: all 0.2s;
+            touch-action: manipulation;
+            width: 100%;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .btn-whatsapp-large { padding: 14px 32px; font-size: 18px; width: auto; }
+        }
+        .btn-whatsapp-large:hover { background: #1da851; transform: scale(1.02); }
+        .btn-whatsapp-large:active { transform: scale(0.97); }
+        .btn-whatsapp-large i { font-size: 24px; }
+
+        @media (max-width: 480px) {
+            .hide-mobile { display: none; }
+        }
+        @media (min-width: 481px) {
+            .hide-desktop { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+
+    <!-- HEADER -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fas fa-robot"></i></div>
+            <div class="logo-text">Meu<span>RSC</span></div>
+            <span class="badge-version">copiloto v7.0</span>
+            <div class="logo-taes">
+                <i class="fas fa-university"></i>
+                <span>TAES <small>· Técnicos Administrativos</small></span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="logo-selo hide-mobile">
+                <i class="fas fa-certificate"></i>
+                <span>RSC-PCCTAE <small>· Decreto 13.048/2026</small></span>
+            </div>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/decreto/d13048.htm" target="_blank" class="btn btn-outline btn-sm" style="background: #dbeafe; border-color: #0a6b8a; color: #0a3b5c;">
+                <i class="fas fa-scale-balanced"></i> <span class="hide-mobile">Decreto</span>
+            </a>
+            <button class="btn btn-info btn-sm" @click="abrirSituacao" v-if="diagnosticoConcluido && nivelBaseSelecionado">
+                <i class="fas fa-chart-pie"></i> <span class="hide-mobile">Minha Situação</span>
+            </button>
+            <span class="chip chip-blue"><i class="far fa-user"></i> <span class="hide-mobile">Servidor</span></span>
+        </div>
+    </header>
+
+    <!-- PERGUNTA INICIAL: NÍVEL DE ESCOLARIDADE EXIGIDA PARA O CARGO -->
+    <div v-if="!nivelBaseSelecionado" class="nivel-base-box">
+        <div class="card-header" style="margin-bottom: 6px;">
+            <i class="fas fa-graduation-cap"></i> Qual o nível de escolaridade <strong>EXIGIDO PARA O SEU CARGO</strong>?
+        </div>
+        <p style="color: #475569; margin-bottom: 10px; font-size: 13px;">
+            @media (min-width: 768px) { font-size: 15px; }
+            Esta informação é fundamental para determinar seu enquadramento inicial no RSC-PCCTAE, conforme o <strong>Art. 5º, §1º do Decreto nº 13.048/2026</strong>.
+        </p>
+        
+        <div class="nivel-explicacao">
+            <i class="fas fa-info-circle" style="color: #b45309;"></i>
+            <strong>O que é o nível de escolaridade exigido para o cargo?</strong>
+            <p style="margin-top: 3px;">É o requisito mínimo de formação acadêmica para ingresso no seu cargo no Plano de Carreira dos Cargos Técnico-Administrativos em Educação (PCCTAE).</p>
+            <p style="margin-top: 3px; font-size: 12px; color: #475569;">
+                <strong>Exemplo:</strong> Se você é <strong>Nível D</strong> (Ensino Médio/Técnico), selecione a opção correspondente ao seu nível.
+                <span class="exemplo"><i class="fas fa-tag"></i> Nível D → Ensino Médio</span>
+            </p>
+            <p style="margin-top: 3px; font-size: 12px; color: #475569;">
+                <i class="fas fa-arrow-right" style="color: #0a6b8a;"></i>
+                <strong>Níveis do PCCTAE:</strong> A (Fundamental) | B (Fundamental) | C (Médio) | D (Médio/Técnico) | E (Superior) | F (Superior)
+            </p>
+        </div>
+
+        <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px; max-width: 550px;">
+            <select v-model="nivelBase" class="nivel-base-select">
+                <option value="">Selecione o nível de escolaridade do seu cargo...</option>
+                <option value="RSC I">Nível A/B - Ensino Fundamental (RSC I - 10% IQ)</option>
+                <option value="RSC II">Nível C - Ensino Fundamental completo (RSC II - 15% IQ)</option>
+                <option value="RSC III">Nível D - Ensino Médio/Técnico (RSC III - 25% IQ)</option>
+                <option value="RSC IV">Nível E - Graduação Superior (RSC IV - 30% IQ)</option>
+                <option value="RSC V">Nível F - Pós-graduação lato sensu (RSC V - 52% IQ)</option>
+                <option value="RSC VI">Nível F - Mestrado (RSC VI - 75% IQ)</option>
+            </select>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <button class="btn btn-primary" @click="confirmarNivelBase" :disabled="!nivelBase">
+                    <i class="fas fa-check"></i> Confirmar e continuar
+                </button>
+                <span v-if="!nivelBase" style="font-size: 12px; color: #b91c1c;">
+                    <i class="fas fa-exclamation-circle"></i> Selecione uma opção acima
+                </span>
+                <span v-else style="font-size: 12px; color: #0b6e4f;">
+                    <i class="fas fa-check-circle"></i> Opção selecionada
+                </span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 12px; font-size: 12px; color: #64748b; background: #f8fafc; padding: 10px 14px; border-radius: 8px; border: 1px dashed #d0d9e6;">
+            <i class="fas fa-lightbulb" style="color: #b45309;"></i>
+            <strong>Dica:</strong> O RSC-PCCTAE é concedido em seis níveis, com percentuais de Incentivo à Qualificação (IQ) que variam de 10% a 75% do vencimento básico.
+            <span style="display: block; margin-top: 3px;">
+                Seu nível de escolaridade define o <strong>piso mínimo</strong> para enquadramento. Atividades adicionais podem elevar seu nível.
+            </span>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SUPERIOR -->
+    <div v-if="nivelBaseSelecionado">
+        <div class="dashboard-grid" style="margin-bottom: 16px;">
+            <!-- Painel de Pontuação -->
+            <div class="card" style="background: linear-gradient(135deg, #f8faff 0%, #eef6ff 100%); border: 2px solid #d0e0f0;">
+                <div class="card-header"><i class="fas fa-tachometer-alt"></i> Painel de Pontuação</div>
+                <div class="flex-between">
+                    <div>
+                        <span class="chip">Pontuação Total</span>
+                        <strong style="font-size: 26px; margin-left: 6px; color: #0a3b5c;">{{ pontosTotais }}</strong>
+                    </div>
+                    <div>
+                        <span class="chip">Nível Atual</span>
+                        <strong style="font-size: 20px; margin-left: 6px; color: #0a6b8a;">{{ nivelAlcancado }}</strong>
+                    </div>
+                    <div>
+                        <span class="chip">Critérios</span>
+                        <strong style="font-size: 20px; margin-left: 6px;">{{ criteriosAtendidos }}</strong>
+                    </div>
+                </div>
+
+                <div style="background: #dbeafe; border-radius: 8px; padding: 6px 12px; margin-top: 6px; font-size: 11px;">
+                    @media (min-width: 768px) { font-size: 13px; padding: 8px 14px; margin-top: 8px; }
+                    <span style="font-weight: 600; color: #1e4a7a;">
+                        <i class="fas fa-graduation-cap"></i> Escolaridade exigida: 
+                        <strong>{{ nivelBase }} – {{ nivelBaseDescricao }}</strong>
+                        <span style="font-weight: 400; font-size: 10px; margin-left: 6px; background: white; padding: 2px 8px; border-radius: 40px;">
+                            <i class="fas fa-info-circle"></i> Nível base
+                        </span>
+                    </span>
+                </div>
+
+                <div class="elegibilidade-box" style="margin-top: 8px; border-color: {{ elegibilidadeInfo.cor }};">
+                    <div class="flex-between">
+                        <div>
+                            <h4 style="color: {{ elegibilidadeInfo.cor }}; font-size: 12px;">
+                                @media (min-width: 768px) { font-size: 15px; }
+                                <i class="fas" :class="elegibilidadeInfo.icone"></i>
+                                {{ elegibilidadeInfo.titulo }}
+                            </h4>
+                            <p style="font-size: 12px; color: #475569;">{{ elegibilidadeInfo.descricao }}</p>
+                        </div>
+                        <span class="status-badge" :class="elegibilidadeInfo.classe" style="font-size: 11px; padding: 2px 12px;">
+                            @media (min-width: 768px) { font-size: 14px; padding: 4px 16px; }
+                            {{ elegibilidadeInfo.status }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="progress-block" style="margin-top: 8px;">
+                    <div class="flex-between">
+                        <span style="font-size: 11px;">Progresso para {{ proximoNivel || 'RSC VI' }}</span>
+                        <span style="font-size: 11px; font-weight: 600;">{{ Math.min(100, Math.round(pontosTotais / (pontosProximoNivel || 1) * 100)) }}%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill" :style="{ width: Math.min(100, pontosTotais / (pontosProximoNivel || 1) * 100) + '%' }"></div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;">
+                    <span class="chip" :class="statusClass">{{ statusTexto }}</span>
+                    <span class="chip chip-blue" v-if="diagnosticoConcluido"><i class="fas fa-check-circle"></i> Diagnóstico concluído</span>
+                    <span class="chip chip-yellow" v-else><i class="fas fa-spinner fa-pulse"></i> Em andamento ({{ passoAtual+1 }}/{{ requisitos.length }})</span>
+                    <button class="btn btn-outline btn-sm" @click="alterarNivelBase" title="Alterar escolaridade">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumo por Requisito -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-list-check"></i> Pontuação por Requisito</div>
+                <div v-for="req in requisitos" :key="req.nome" class="requisito-tag">
+                    <i class="fas" :class="req.icone"></i>
+                    {{ req.nome }} – {{ req.titulo }}
+                    <span class="badge-pontos">{{ req.pontuacaoObtida || 0 }} pts</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- METAS PARA PRÓXIMOS NÍVEIS -->
+        <div class="card" style="margin-bottom: 14px; border: 2px solid #0a6b8a; background: #f8faff;">
+            <div class="card-header"><i class="fas fa-flag-checkered"></i> Metas para os próximos níveis</div>
+            <p style="font-size: 12px; color: #475569; margin-bottom: 8px;">
+                @media (min-width: 768px) { font-size: 14px; margin-bottom: 10px; }
+                <i class="fas fa-info-circle" style="color: #0a6b8a;"></i>
+                Clique em <strong>"Faltam..."</strong> para ver detalhes sobre os critérios e como atingi-los.
+            </p>
+            
+            <div v-for="meta in metasProximosNiveis" :key="meta.nivel" class="meta-box">
+                <div class="meta-item">
+                    <span class="nivel" :style="{ color: meta.cor }">{{ meta.nivel }}</span>
+                    <span class="status-icon">
+                        <i class="fas" :class="meta.atendido ? 'fa-check-circle' : 'fa-circle'" 
+                           :style="{ color: meta.atendido ? '#0b6e4f' : '#94a3b8' }"></i>
+                    </span>
+                    <span style="font-size: 12px; flex: 1;">{{ meta.descricao }}</span>
+                    <span class="faltam" :style="{ color: meta.atendido ? '#0b6e4f' : '#b45309' }" 
+                          @click="abrirDetalheCriterio(meta)" v-if="!meta.atendido">
+                        {{ meta.faltam }}
+                    </span>
+                    <span v-else style="font-weight: 600; color: #0b6e4f; font-size: 12px;">✅ Atendido</span>
+                </div>
+                <div v-if="!meta.atendido && meta.comoConseguir" style="font-size: 12px; color: #475569; padding: 3px 0 0 60px;">
+                    @media (min-width: 768px) { font-size: 13px; padding: 4px 0 0 72px; }
+                    <i class="fas fa-lightbulb" style="color: #b45309;"></i>
+                    {{ meta.comoConseguir }}
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAGNÓSTICO ATIVO -->
+        <div v-if="!diagnosticoConcluido">
+            <div class="card">
+                <div class="card-header"><i class="fas fa-stethoscope"></i> Diagnóstico Inteligente</div>
+                
+                <div class="step-indicator">
+                    <span class="step-dot" v-for="(req, idx) in requisitos" 
+                          :class="{ active: passoAtual === idx, done: idx < passoAtual }">
+                        {{ req.nome }}
+                    </span>
+                </div>
+
+                <div v-if="passoAtual < requisitos.length">
+                    <h3 style="margin-bottom: 8px; color: #0a3b5c; font-size: 16px;">
+                        @media (min-width: 768px) { font-size: 18px; margin-bottom: 10px; }
+                        <i class="fas fa-chevron-right"></i> {{ requisitos[passoAtual].titulo }}
+                    </h3>
+                    <p style="color: #475569; margin-bottom: 10px; font-size: 13px;">{{ requisitos[passoAtual].descricao }}</p>
+
+                    <div v-for="(pergunta, idx) in requisitos[passoAtual].perguntas" :key="idx" class="question">
+                        <div class="question-header">
+                            <label>{{ pergunta.texto }}</label>
+                            <button class="btn-info-small" @click="toggleInfo(pergunta)" :class="{ active: pergunta.mostrarInfo }" title="Mais informações">
+                                <i class="fas fa-info"></i>
+                            </button>
+                        </div>
+                        <div class="desc">{{ pergunta.desc }}</div>
+                        
+                        <div class="info-tooltip" :class="{ visible: pergunta.mostrarInfo }">
+                            <strong>📌 O que é isso?</strong>
+                            <p style="margin: 3px 0;">{{ pergunta.info }}</p>
+                            <span class="decreto-ref">📖 {{ pergunta.decretoRef }}</span>
+                            <div style="margin-top: 3px; font-size: 11px; color: #64748b;">
+                                <i class="fas fa-check-circle" style="color: #0b6e4f;"></i> 
+                                {{ pergunta.exemplo || 'Exemplo: Portaria de designação, ata de participação, certificado.' }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <input v-if="pergunta.tipo === 'number'" type="number" min="0" step="1" 
+                                   v-model="pergunta.valor" @input="atualizarPontuacao" :placeholder="pergunta.placeholder || '0'" />
+                            <input v-else-if="pergunta.tipo === 'text'" type="text" 
+                                   v-model="pergunta.valor" :placeholder="pergunta.placeholder" />
+                            <select v-else-if="pergunta.tipo === 'select'" v-model="pergunta.valor" @change="atualizarPontuacao">
+                                <option v-for="opt in pergunta.opcoes" :value="opt">{{ opt }}</option>
+                            </select>
+                            <button v-else-if="pergunta.tipo === 'upload'" class="btn btn-outline btn-sm" @click="simularUpload(pergunta)">
+                                <i class="fas fa-upload"></i> <span class="hide-mobile">Simular upload</span>
+                            </button>
+                            <span class="pontos-info" v-if="pergunta.pontos"><i class="fas fa-star"></i> +{{ pergunta.pontos }} pts</span>
+                            <span class="chip" v-if="pergunta.anexo"><i class="fas fa-paperclip"></i> Anexado</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" @click="avancarPasso">
+                            <i class="fas fa-arrow-right"></i> Próximo requisito
+                        </button>
+                        <button class="btn btn-outline" @click="passoAtual = Math.max(0, passoAtual-1)" v-if="passoAtual > 0">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <span class="chip" style="margin-left: auto;">{{ passoAtual+1 }} / {{ requisitos.length }}</span>
+                    </div>
+                </div>
+
+                <div v-else class="text-center" style="padding: 16px;">
+                    <i class="fas fa-check-circle" style="font-size: 40px; color: #0b6e4f;"></i>
+                    <h3 style="margin: 10px 0;">Diagnóstico concluído!</h3>
+                    <button class="btn btn-success" @click="finalizarDiagnostico">
+                        <i class="fas fa-chart-bar"></i> Ver resultado completo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTADO DO DIAGNÓSTICO -->
+        <div v-else>
+            <div class="card" style="background: linear-gradient(135deg, #f0f7ff 0%, #e8f0fe 100%); border: 2px solid #d0e0f0;">
+                <div class="flex-between">
+                    <h3 style="font-size: 16px;"><i class="fas fa-clipboard-check" style="color: #0a3b5c;"></i> Diagnóstico Geral</h3>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                        <button class="btn btn-info btn-sm" @click="abrirSituacao">
+                            <i class="fas fa-chart-pie"></i> <span class="hide-mobile">Minha Situação</span>
+                        </button>
+                        <button class="btn btn-success btn-sm" @click="gerarRelatorio">
+                            <i class="fas fa-file-pdf"></i> <span class="hide-mobile">Relatório</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div style="background: #dbeafe; border-radius: 8px; padding: 6px 12px; margin: 6px 0; font-size: 11px;">
+                    @media (min-width: 768px) { font-size: 13px; padding: 8px 14px; margin: 8px 0; }
+                    <span style="font-weight: 600; color: #1e4a7a;">
+                        <i class="fas fa-graduation-cap"></i> Escolaridade exigida: 
+                        <strong>{{ nivelBase }} – {{ nivelBaseDescricao }}</strong>
+                        <span style="font-weight: 400; font-size: 10px; margin-left: 6px; background: white; padding: 2px 8px; border-radius: 40px;">
+                            <i class="fas fa-info-circle"></i> Nível base
+                        </span>
+                    </span>
+                </div>
+
+                <div class="elegibilidade-box" style="border-color: {{ elegibilidadeInfo.cor }}; background: white;">
+                    <div class="flex-between">
+                        <div>
+                            <h4 style="color: {{ elegibilidadeInfo.cor }}; font-size: 14px;">
+                                @media (min-width: 768px) { font-size: 18px; }
+                                <i class="fas" :class="elegibilidadeInfo.icone"></i>
+                                {{ elegibilidadeInfo.titulo }}
+                            </h4>
+                            <p style="font-size: 13px; color: #475569;">{{ elegibilidadeInfo.descricao }}</p>
+                        </div>
+                        <span class="status-badge" :class="elegibilidadeInfo.classe" style="font-size: 14px; padding: 6px 18px;">
+                            @media (min-width: 768px) { font-size: 18px; padding: 8px 24px; }
+                            {{ elegibilidadeInfo.status }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin: 10px 0;">
+                    <div><span class="chip">Pontuação total</span> <strong style="font-size: 22px; margin-left: 6px;">{{ pontosTotais }}</strong></div>
+                    <div><span class="chip">Critérios específicos</span> <strong style="font-size: 22px; margin-left: 6px;">{{ criteriosAtendidos }}</strong></div>
+                    <div><span class="chip">Nível RSC alcançado</span> <strong style="font-size: 22px; margin-left: 6px; color: #0a3b5c;">{{ nivelAlcancado }}</strong></div>
+                    <div><span class="chip">Status</span> <span class="status-badge" :class="statusClass" style="font-size: 12px; padding: 2px 12px;">{{ statusTexto }}</span></div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <h4 style="font-size: 14px; margin-bottom: 4px;"><i class="fas fa-list"></i> Detalhamento por requisito</h4>
+                    <div v-for="req in requisitos" :key="req.nome" class="requisito-tag">
+                        <i class="fas" :class="req.icone"></i>
+                        {{ req.nome }} – {{ req.titulo }}
+                        <span class="badge-pontos">{{ req.pontuacaoObtida || 0 }} pts</span>
+                        <span class="chip" v-if="req.perguntas.some(p => parseFloat(p.valor) > 0)" style="margin-left: 4px;">
+                            <i class="fas fa-check-circle" style="color: #0b6e4f;"></i> Atendido
+                        </span>
+                        <span class="chip chip-red" v-else style="margin-left: 4px;">
+                            <i class="fas fa-circle"></i> Pendente
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Botão WhatsApp -->
+                <div class="whatsapp-btn-container">
+                    <button class="btn-whatsapp-large" @click="compartilharWhatsApp">
+                        <i class="fab fa-whatsapp"></i> Compartilhar minha situação
+                    </button>
+                </div>
+
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; justify-content: center;">
+                    <button class="btn btn-primary btn-sm" @click="simularEvolucao"><i class="fas fa-chart-line"></i> Simular evolução</button>
+                    <button class="btn btn-success btn-sm" @click="gerarMemorial"><i class="fas fa-file-pen"></i> Memorial</button>
+                    <button class="btn btn-outline btn-sm" @click="reiniciarDiagnostico"><i class="fas fa-undo"></i> Reiniciar</button>
+                    <button class="btn btn-outline btn-sm" @click="alterarNivelBase"><i class="fas fa-edit"></i> Alterar escolaridade</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIMULADOR -->
+        <div v-if="mostrarSimulador" class="card" style="border: 2px solid #0a6b8a; background: #f8faff; margin-top: 14px;">
+            <div class="card-header"><i class="fas fa-flask"></i> Simulador "E se…"</div>
+            <div class="grid-2">
+                <div>
+                    <label style="font-weight: 600; display: block; margin-bottom: 4px; font-size: 13px;">Adicionar atividade:</label>
+                    <select v-model="simulacaoAtividade" style="width: 100%; padding: 6px 10px; border-radius: 8px; border: 1px solid #d0d9e6; font-size: 13px;">
+                        <option v-for="act in atividadesSimulacao" :value="act">{{ act.nome }}</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm" @click="aplicarSimulacao" style="margin-top: 6px;">
+                        <i class="fas fa-plus"></i> Aplicar simulação
+                    </button>
+                </div>
+                <div>
+                    <div class="flex-between"><span class="chip">Pontuação atual</span> <strong style="font-size: 20px;">{{ pontosTotais }}</strong></div>
+                    <div class="flex-between" style="margin-top: 2px;"><span class="chip chip-green">Nova pontuação</span> <strong style="font-size: 20px; color: #0b6e4f;">{{ pontosSimulados || pontosTotais }}</strong></div>
+                    <div class="flex-between" style="margin-top: 2px;"><span class="chip">Novo nível</span> <strong style="font-size: 16px; color: #0a6b8a;">{{ nivelSimulado || nivelAlcancado }}</strong></div>
+                </div>
+            </div>
+            <button class="btn btn-danger btn-sm" @click="fecharSimulador" style="margin-top: 8px;">
+                <i class="fas fa-times"></i> Fechar simulação
+            </button>
+        </div>
+
+        <!-- MODAL: MINHA SITUAÇÃO -->
+        <div v-if="mostrarSituacao" class="situacao-modal" @click.self="fecharSituacao">
+            <div class="situacao-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h2 style="color: #0a3b5c; font-size: 20px;"><i class="fas fa-chart-pie"></i> Minha Situação RSC</h2>
+                    <button class="btn btn-outline btn-sm" @click="fecharSituacao"><i class="fas fa-times"></i></button>
+                </div>
+
+                <div style="background: #dbeafe; border-radius: 8px; padding: 6px 12px; margin-bottom: 10px; font-size: 12px;">
+                    <span style="font-weight: 600; color: #1e4a7a;">
+                        <i class="fas fa-graduation-cap"></i> Escolaridade exigida: 
+                        <strong>{{ nivelBase }} – {{ nivelBaseDescricao }}</strong>
+                    </span>
+                </div>
+
+                <div class="elegibilidade-box" style="border-color: {{ elegibilidadeInfo.cor }}; background: #f8faff;">
+                    <div class="flex-between">
+                        <div>
+                            <h4 style="color: {{ elegibilidadeInfo.cor }}; font-size: 15px;">
+                                <i class="fas" :class="elegibilidadeInfo.icone"></i>
+                                {{ elegibilidadeInfo.titulo }}
+                            </h4>
+                            <p style="font-size: 13px; color: #475569;">{{ elegibilidadeInfo.descricao }}</p>
+                        </div>
+                        <span class="status-badge" :class="elegibilidadeInfo.classe" style="font-size: 16px; padding: 6px 18px;">
+                            {{ elegibilidadeInfo.status }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card" style="background: #f8faff; border-color: #d0e0f0; margin-top: 10px; padding: 12px 16px;">
+                    <div class="flex-between">
+                        <div><span class="chip">Nível Atual</span> <strong style="font-size: 24px; color: #0a3b5c; margin-left: 6px;">{{ nivelAlcancado }}</strong></div>
+                        <div><span class="chip">Pontuação</span> <strong style="font-size: 24px; margin-left: 6px;">{{ pontosTotais }}</strong></div>
+                        <div><span class="status-badge" :class="statusClass" style="font-size: 12px; padding: 2px 12px;">{{ statusTexto }}</span></div>
+                    </div>
+                </div>
+
+                <!-- METAS DETALHADAS -->
+                <div style="margin: 12px 0;">
+                    <h4 style="font-size: 16px;"><i class="fas fa-flag-checkered"></i> Metas para evoluir</h4>
+                    <p style="font-size: 12px; color: #475569; margin-bottom: 6px;">
+                        Clique em <strong>"Faltam..."</strong> para ver detalhes sobre os critérios.
+                    </p>
+                    <div v-for="meta in metasProximosNiveis" :key="meta.nivel" style="padding: 6px 0; border-bottom: 1px solid #f1f5f9;">
+                        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <span style="font-weight: 700; width: 50px; font-size: 13px; color: {{ meta.cor }};">{{ meta.nivel }}</span>
+                            <span class="chip" :class="meta.atendido ? 'chip-green' : 'chip-yellow'" style="font-size: 11px;">
+                                {{ meta.atendido ? '✅ Alcançado' : '⏳ Pendente' }}
+                            </span>
+                            <span style="font-size: 12px; flex: 1;">{{ meta.descricao }}</span>
+                            <span class="faltam" style="font-weight: 600; font-size: 12px; color: {{ meta.atendido ? '#0b6e4f' : '#b45309' }}; cursor: pointer; text-decoration: underline;"
+                                  @click="abrirDetalheCriterio(meta)" v-if="!meta.atendido">
+                                {{ meta.faltam }}
+                            </span>
+                            <span v-else style="font-weight: 600; color: #0b6e4f; font-size: 12px;">✅ Atendido</span>
+                        </div>
+                        <div v-if="!meta.atendido && meta.comoConseguir" style="font-size: 12px; color: #475569; padding: 3px 0 0 58px;">
+                            <i class="fas fa-lightbulb" style="color: #b45309;"></i> {{ meta.comoConseguir }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão WhatsApp -->
+                <div class="whatsapp-btn-container" style="margin-top: 10px;">
+                    <button class="btn-whatsapp-large" @click="compartilharWhatsApp">
+                        <i class="fab fa-whatsapp"></i> Compartilhar no WhatsApp
+                    </button>
+                </div>
+
+                <div style="margin: 10px 0;">
+                    <h4 style="font-size: 15px;"><i class="fas fa-brain"></i> Análise Estratégica</h4>
+                    <div class="recomendacao-box" style="font-size: 13px;">
+                        <p style="font-weight: 500; color: #0a3b5c;">{{ analiseIA }}</p>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin: 10px 0;">
+                    <div style="background: #d1fae5; border-radius: 10px; padding: 10px 14px;">
+                        <h5 style="color: #065f46; font-size: 14px;"><i class="fas fa-arrow-up"></i> Pontos Fortes</h5>
+                        <ul style="font-size: 13px; margin-top: 4px; list-style: none; padding: 0;">
+                            <li v-for="item in pontosFortes" :key="item" style="padding: 2px 0;">
+                                <i class="fas fa-check-circle" style="color: #065f46; font-size: 11px;"></i> {{ item }}
+                            </li>
+                            <li v-if="pontosFortes.length === 0" style="color: #64748b;">Nenhum ponto forte identificado ainda.</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fee2e2; border-radius: 10px; padding: 10px 14px;">
+                        <h5 style="color: #991b1b; font-size: 14px;"><i class="fas fa-arrow-down"></i> Pontos de Melhoria</h5>
+                        <ul style="font-size: 13px; margin-top: 4px; list-style: none; padding: 0;">
+                            <li v-for="item in pontosFracos" :key="item" style="padding: 2px 0;">
+                                <i class="fas fa-circle-exclamation" style="color: #991b1b; font-size: 11px;"></i> {{ item }}
+                            </li>
+                            <li v-if="pontosFracos.length === 0" style="color: #64748b;">Todos os requisitos atendidos!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <h4 style="font-size: 15px;"><i class="fas fa-lightbulb"></i> Recomendações</h4>
+                    <div class="recomendacao-box" style="background: #fef3c7; border-color: #fcd34d; font-size: 13px;">
+                        <p style="font-weight: 500; color: #92400e;">{{ recomendacao }}</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px; background: #f1f5f9; border-radius: 10px; padding: 10px 14px;">
+                    <h5 style="margin-bottom: 4px; font-size: 14px;"><i class="fas fa-clipboard-check"></i> Checklist para próximo nível</h5>
+                    <div v-for="item in checklist" :key="item.texto" style="font-size: 13px; padding: 2px 0;">
+                        <i class="fas" :class="item.feito ? 'fa-check-circle' : 'fa-circle'" 
+                           :style="{ color: item.feito ? '#0b6e4f' : '#94a3b8' }"></i>
+                        {{ item.texto }}
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+                    <button class="btn btn-success btn-sm" @click="gerarRelatorio"><i class="fas fa-file-pdf"></i> Relatório</button>
+                    <button class="btn btn-primary btn-sm" @click="gerarMemorial"><i class="fas fa-file-pen"></i> Memorial</button>
+                    <button class="btn btn-outline btn-sm" @click="fecharSituacao"><i class="fas fa-times"></i> Fechar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: DETALHE CRITÉRIO -->
+        <div v-if="mostrarDetalheCriterio" class="detalhe-criterio-modal" @click.self="fecharDetalheCriterio">
+            <div class="detalhe-criterio-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h3 style="font-size: 18px; color: #0a3b5c;"><i class="fas fa-list-check"></i> {{ detalheCriterioNivel }} - Critérios</h3>
+                    <button class="btn btn-outline btn-sm" @click="fecharDetalheCriterio"><i class="fas fa-times"></i></button>
+                </div>
+                
+                <p style="color: #475569; margin-bottom: 10px; font-size: 13px;">
+                    Para alcançar o <strong>{{ detalheCriterioNivel }}</strong>, você precisa atender aos seguintes critérios:
+                </p>
+                
+                <div v-for="(item, idx) in detalheCriterioItens" :key="idx" class="criterio-item">
+                    <div class="nome">{{ item.nome }}</div>
+                    <div class="como">{{ item.descricao }}</div>
+                    <div class="exemplo" v-if="item.exemplo">
+                        <i class="fas fa-lightbulb" style="color: #b45309;"></i> Como atingir: {{ item.exemplo }}
+                    </div>
+                </div>
+                
+                <div style="margin-top: 12px; background: #f0f7ff; border-radius: 8px; padding: 10px 14px; border-left: 3px solid #0a6b8a; font-size: 13px;">
+                    <strong>📌 Status atual:</strong>
+                    <ul style="margin-top: 4px; font-size: 13px; list-style: none; padding: 0;">
+                        <li>✅ Pontuação: {{ pontosTotais }} pts</li>
+                        <li>✅ Critérios atendidos: {{ criteriosAtendidos }}</li>
+                        <li v-for="req in detalheRequisitosStatus" :key="req.nome">
+                            <span :style="{ color: req.atendido ? '#0b6e4f' : '#b91c1c' }">
+                                <i class="fas" :class="req.atendido ? 'fa-check-circle' : 'fa-times-circle'"></i>
+                                Requisito {{ req.nome }}: {{ req.atendido ? 'Atendido' : 'Pendente' }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="btn btn-primary btn-sm" @click="fecharDetalheCriterio"><i class="fas fa-check"></i> Entendi</button>
+                    <button class="btn btn-outline btn-sm" @click="fecharDetalheCriterio; abrirSituacao()">
+                        <i class="fas fa-chart-pie"></i> Ver situação completa
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEMORIAL GERADO -->
+        <div v-if="memorialGerado" class="card" style="border: 2px solid #0b6e4f; background: #f6fdfa; margin-top: 14px;">
+            <div class="card-header"><i class="fas fa-file-lines"></i> Memorial gerado</div>
+            <div class="memorial-preview" style="max-height: 200px; overflow-y: auto; background: white; border-left-color: #0b6e4f;">
+                <p v-html="memorialTexto" style="font-size: 13px;"></p>
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="btn btn-success btn-sm"><i class="fas fa-download"></i> Baixar .docx</button>
+                <button class="btn btn-outline btn-sm" @click="memorialGerado = false"><i class="fas fa-times"></i> Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div style="margin-top: 18px; border-top: 1px solid #e2e8f0; padding-top: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px;">
+        @media (min-width: 768px) { font-size: 13px; margin-top: 24px; padding-top: 14px; gap: 10px; }
+        <div>
+            <span class="chip"><i class="fas fa-clipboard-check"></i> Checklist</span>
+            <span class="chip chip-green" v-if="diagnosticoConcluido"><i class="fas fa-check"></i> Diagnóstico OK</span>
+            <span class="chip chip-yellow" v-else><i class="fas fa-spinner"></i> Em andamento</span>
+            <span class="chip" v-if="pontosTotais >= 52">🎯 RSC V+ possível</span>
+        </div>
+        <div>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/decreto/d13048.htm" target="_blank" style="color: #0a6b8a; text-decoration: none; font-weight: 500;">
+                <i class="fas fa-scale-balanced"></i> Decreto nº 13.048/2026
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        nivelBase: '',
+        nivelBaseSelecionado: false,
+
+        passoAtual: 0,
+        diagnosticoConcluido: false,
+        mostrarSimulador: false,
+        memorialGerado: false,
+        memorialTexto: '',
+        mostrarSituacao: false,
+        simulacaoAtividade: null,
+        pontosSimulados: null,
+        nivelSimulado: null,
+
+        mostrarDetalheCriterio: false,
+        detalheCriterioNivel: '',
+        detalheCriterioItens: [],
+        detalheRequisitosStatus: [],
+
+        requisitos: [
+            {
+                nome: 'I',
+                titulo: 'Grupos de Trabalho, Comissões, Comitês',
+                icone: 'fa-people-group',
+                descricao: 'Responda conforme o Anexo I do Decreto nº 13.048/2026.',
+                pontuacaoObtida: 0,
+                perguntas: [
+                    { 
+                        texto: 'Membro de Conselho Superior ou Colegiado', 
+                        desc: 'Por ano ou fração >6 meses', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação como membro titular ou suplente em conselhos superiores (CONSUN, CONSEPE) ou colegiados de unidades acadêmicas.',
+                        decretoRef: 'Anexo I, Item 1',
+                        exemplo: 'Portaria de nomeação como membro do CONSUN ou ata de posse.'
+                    },
+                    { 
+                        texto: 'Coordenação/Presidência de comissão/GT', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação como coordenador(a), presidente ou líder de grupos de trabalho, comissões ou núcleos formalmente instituídos.',
+                        decretoRef: 'Anexo I, Item 2',
+                        exemplo: 'Portaria de designação como coordenador de comissão.'
+                    },
+                    { 
+                        texto: 'Membro de comissão/GT', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação como membro efetivo em comissões, grupos de trabalho, comitês ou núcleos.',
+                        decretoRef: 'Anexo I, Item 3',
+                        exemplo: 'Portaria de designação como membro de comissão.'
+                    },
+                    { 
+                        texto: 'Atuação em concursos (fiscal/execução)', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação na organização, fiscalização ou execução de exames de seleção, vestibulares ou concursos públicos.',
+                        decretoRef: 'Anexo I, Item 5',
+                        exemplo: 'Portaria de designação como fiscal de concurso.'
+                    },
+                    { 
+                        texto: 'Elaboração/correção de provas', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação na elaboração, revisão ou correção de provas de exames seletivos, vestibulares ou concursos.',
+                        decretoRef: 'Anexo I, Item 6',
+                        exemplo: 'Portaria de designação para banca elaboradora.'
+                    },
+                    { 
+                        texto: 'Mandato em entidade sindical', 
+                        desc: 'Por ano ou fração >6 meses', 
+                        tipo: 'number', 
+                        pontos: 1.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Exercício de mandato eletivo em entidade sindical representativa da categoria.',
+                        decretoRef: 'Anexo I, Item 7',
+                        exemplo: 'Declaração do sindicato com período de mandato.'
+                    },
+                    { 
+                        texto: 'Representação legal da IFE', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 7.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação como representante legal da Instituição Federal de Ensino junto a órgãos e entidades públicas.',
+                        decretoRef: 'Anexo I, Item 9',
+                        exemplo: 'Portaria de representação institucional.'
+                    },
+                ]
+            },
+            {
+                nome: 'II',
+                titulo: 'Projetos Institucionais, Gestão, Ensino, Pesquisa, Extensão',
+                icone: 'fa-project-diagram',
+                descricao: 'Conforme Anexo II do Decreto nº 13.048/2026.',
+                pontuacaoObtida: 0,
+                perguntas: [
+                    { 
+                        texto: 'Coordenação de projetos institucionais', 
+                        desc: 'Por projeto', 
+                        tipo: 'number', 
+                        pontos: 7.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Coordenação de projetos de ensino, pesquisa, extensão, gestão ou inovação institucionais.',
+                        decretoRef: 'Anexo II, Item 1',
+                        exemplo: 'Portaria de coordenação de projeto ou relatório de projeto.'
+                    },
+                    { 
+                        texto: 'Participação em atividades técnicas/especializadas', 
+                        desc: 'Por projeto', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação em atividades técnicas ou especializadas em projetos institucionais.',
+                        decretoRef: 'Anexo II, Item 2',
+                        exemplo: 'Relatório de participação em projeto.'
+                    },
+                    { 
+                        texto: 'Participação em comissão editorial', 
+                        desc: 'Por mandato', 
+                        tipo: 'number', 
+                        pontos: 7.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação em conselho ou comissão editorial de livros, revistas ou publicações científicas.',
+                        decretoRef: 'Anexo II, Item 3',
+                        exemplo: 'Portaria de nomeação para comissão editorial.'
+                    },
+                    { 
+                        texto: 'Atividades de orientação/tutoria/supervisão', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação como orientador, tutor, preceptor ou supervisor em atividades institucionais.',
+                        decretoRef: 'Anexo II, Item 5',
+                        exemplo: 'Portaria de designação como tutor ou orientador.'
+                    },
+                    { 
+                        texto: 'Produção de material acessível/técnico', 
+                        desc: 'Por produto', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Produção ou reformulação de material acessível ou técnico de referência (manuais, roteiros).',
+                        decretoRef: 'Anexo II, Item 6',
+                        exemplo: 'Manual ou roteiro técnico publicado.'
+                    },
+                    { 
+                        texto: 'Participação em capacitações (>10h)', 
+                        desc: 'Por capacitação', 
+                        tipo: 'number', 
+                        pontos: 1, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação em programas de formação continuada, capacitações ou ações de desenvolvimento com carga horária mínima de 10 horas.',
+                        decretoRef: 'Anexo II, Item 9',
+                        exemplo: 'Certificado de capacitação com carga horária.'
+                    },
+                ]
+            },
+            {
+                nome: 'III',
+                titulo: 'Premiação em Evento de Reconhecimento Público',
+                icone: 'fa-trophy',
+                descricao: 'Conforme Anexo III do Decreto nº 13.048/2026.',
+                pontuacaoObtida: 0,
+                perguntas: [
+                    { 
+                        texto: 'Prêmio internacional', 
+                        desc: 'Por prêmio', 
+                        tipo: 'number', 
+                        pontos: 20, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Recebimento de premiação de âmbito internacional por projetos implementados na administração pública.',
+                        decretoRef: 'Anexo III, Item 1',
+                        exemplo: 'Certificado de premiação internacional.'
+                    },
+                    { 
+                        texto: 'Prêmio nacional', 
+                        desc: 'Por prêmio', 
+                        tipo: 'number', 
+                        pontos: 15, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Recebimento de premiação de âmbito nacional por projetos implementados na administração pública.',
+                        decretoRef: 'Anexo III, Item 2',
+                        exemplo: 'Certificado de premiação nacional.'
+                    },
+                    { 
+                        texto: 'Prêmio local/institucional', 
+                        desc: 'Por prêmio', 
+                        tipo: 'number', 
+                        pontos: 7.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Recebimento de premiação de âmbito local ou institucional, formalmente instituído.',
+                        decretoRef: 'Anexo III, Item 3',
+                        exemplo: 'Certificado de premiação institucional.'
+                    },
+                ]
+            },
+            {
+                nome: 'IV',
+                titulo: 'Responsabilidades Técnico-Administrativas',
+                icone: 'fa-briefcase',
+                descricao: 'Conforme Anexo IV do Decreto nº 13.048/2026.',
+                pontuacaoObtida: 0,
+                perguntas: [
+                    { 
+                        texto: 'Fiscal de contratos', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Exercício de atividades de gestão ou fiscalização de contratos de aquisição, serviços, convênios e acordos.',
+                        decretoRef: 'Anexo IV, Item 3',
+                        exemplo: 'Portaria de designação como fiscal de contrato.'
+                    },
+                    { 
+                        texto: 'Elaboração de projeto básico/termo de referência', 
+                        desc: 'Por designação', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Elaboração de projeto básico, termo de referência ou participação em equipe de planejamento de contratação.',
+                        decretoRef: 'Anexo IV, Item 2',
+                        exemplo: 'Termo de referência ou projeto básico assinado.'
+                    },
+                    { 
+                        texto: 'Responsável por setor/unidade', 
+                        desc: 'Por ano ou fração >6 meses', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação como responsável por setor ou unidade, formalmente designado, sem remuneração adicional.',
+                        decretoRef: 'Anexo IV, Item 8',
+                        exemplo: 'Portaria de designação como responsável.'
+                    },
+                    { 
+                        texto: 'Atuação em sistemas estruturantes', 
+                        desc: 'Por sistema', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação na operação, implantação, suporte ou aperfeiçoamento de sistemas estruturantes da administração pública.',
+                        decretoRef: 'Anexo IV, Item 1',
+                        exemplo: 'Portaria ou relatório de atuação em sistema.'
+                    },
+                ]
+            },
+            {
+                nome: 'V',
+                titulo: 'Função ou Cargo de Direção/Assessoramento',
+                icone: 'fa-user-tie',
+                descricao: 'Conforme Anexo V do Decreto nº 13.048/2026.',
+                pontuacaoObtida: 0,
+                perguntas: [
+                    { 
+                        texto: 'CD-02 ou equivalente (titular)', 
+                        desc: 'Por ano ou fração', 
+                        tipo: 'number', 
+                        pontos: 9, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Exercício de Cargo de Direção CD-02 ou equivalente como titular.',
+                        decretoRef: 'Anexo V, Item 1',
+                        exemplo: 'Portaria de nomeação para CD-02.'
+                    },
+                    { 
+                        texto: 'CD-03/04 ou equivalente (titular)', 
+                        desc: 'Por ano ou fração', 
+                        tipo: 'number', 
+                        pontos: 7.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Exercício de Cargo de Direção CD-03 ou CD-04, ou equivalentes, como titular.',
+                        decretoRef: 'Anexo V, Item 2',
+                        exemplo: 'Portaria de nomeação para CD-03 ou CD-04.'
+                    },
+                    { 
+                        texto: 'FG-01/02 ou equivalente (titular)', 
+                        desc: 'Por ano ou fração', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Exercício de Função Gratificada FG-01 ou FG-02, ou equivalentes, como titular.',
+                        decretoRef: 'Anexo V, Item 3',
+                        exemplo: 'Portaria de designação para FG-01 ou FG-02.'
+                    },
+                    { 
+                        texto: 'FG-03+ ou equivalente (titular)', 
+                        desc: 'Por ano ou fração', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Exercício de Função Gratificada a partir de FG-03, ou equivalente, como titular.',
+                        decretoRef: 'Anexo V, Item 4',
+                        exemplo: 'Portaria de designação para FG-03 ou superior.'
+                    },
+                ]
+            },
+            {
+                nome: 'VI',
+                titulo: 'Produção, Prospecção e Difusão de Conhecimento',
+                icone: 'fa-flask',
+                descricao: 'Conforme Anexo VI do Decreto nº 13.048/2026.',
+                pontuacaoObtida: 0,
+                perguntas: [
+                    { 
+                        texto: 'Livro publicado (com ISBN)', 
+                        desc: 'Por produto', 
+                        tipo: 'number', 
+                        pontos: 20, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Publicação ou organização de livro com ISBN e Conselho Editorial, relacionado aos interesses institucionais.',
+                        decretoRef: 'Anexo VI, Item 9',
+                        exemplo: 'Livro com ficha catalográfica e ISBN.'
+                    },
+                    { 
+                        texto: 'Capítulo de livro ou artigo em revista', 
+                        desc: 'Por publicação', 
+                        tipo: 'number', 
+                        pontos: 7.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Autoria ou coautoria de capítulo de livro, artigo em revista especializada ou periódico científico.',
+                        decretoRef: 'Anexo VI, Item 10',
+                        exemplo: 'Publicação com DOI ou ISSN.'
+                    },
+                    { 
+                        texto: 'Curso superior (além do exigido)', 
+                        desc: 'Por curso', 
+                        tipo: 'number', 
+                        pontos: 15, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Conclusão de curso de educação formal superior ao exigido para ingresso no cargo, não utilizado para Incentivo à Qualificação.',
+                        decretoRef: 'Anexo VI, Item 4',
+                        exemplo: 'Diploma de curso superior adicional.'
+                    },
+                    { 
+                        texto: 'Mestrado', 
+                        desc: 'Por diploma', 
+                        tipo: 'number', 
+                        pontos: 15, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Conclusão de mestrado, não utilizado para Incentivo à Qualificação.',
+                        decretoRef: 'Anexo VI, Item 4',
+                        exemplo: 'Diploma de mestrado.'
+                    },
+                    { 
+                        texto: 'Instrutor/tutor em ação formativa', 
+                        desc: 'Por curso', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Atuação como instrutor, tutor, palestrante ou orientador em ação formativa estruturada de interesse institucional.',
+                        decretoRef: 'Anexo VI, Item 15',
+                        exemplo: 'Portaria de designação como instrutor.'
+                    },
+                    { 
+                        texto: 'Participação em grupo de pesquisa', 
+                        desc: 'Por projeto', 
+                        tipo: 'number', 
+                        pontos: 3, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Participação como membro em grupo de pesquisa registrado em órgão oficial de reconhecimento institucional.',
+                        decretoRef: 'Anexo VI, Item 7',
+                        exemplo: 'Certificado de participação em grupo de pesquisa.'
+                    },
+                    { 
+                        texto: 'Produção de material técnico', 
+                        desc: 'Por produto', 
+                        tipo: 'number', 
+                        pontos: 4.5, 
+                        valor: 0,
+                        mostrarInfo: false,
+                        info: 'Produção de material técnico, científico, metodológico ou administrativo estruturado para difusão do conhecimento.',
+                        decretoRef: 'Anexo VI, Item 12',
+                        exemplo: 'Manual técnico, cartilha ou guia metodológico.'
+                    },
+                ]
+            }
+        ],
+
+        atividadesSimulacao: [
+            { nome: 'Publicar capítulo de livro (+7.5 pts)', pontos: 7.5, requisito: 'VI' },
+            { nome: 'Participar de grupo de pesquisa (+3 pts)', pontos: 3, requisito: 'VI' },
+            { nome: 'Coordenar projeto institucional (+7.5 pts)', pontos: 7.5, requisito: 'II' },
+            { nome: 'Receber prêmio institucional (+7.5 pts)', pontos: 7.5, requisito: 'III' },
+            { nome: 'Atuar como instrutor (+4.5 pts)', pontos: 4.5, requisito: 'VI' },
+            { nome: 'Mestrado (+15 pts)', pontos: 15, requisito: 'VI' },
+            { nome: 'Fiscal de contrato (+4.5 pts)', pontos: 4.5, requisito: 'IV' },
+            { nome: 'CD-02 (+9 pts)', pontos: 9, requisito: 'V' },
+            { nome: 'Curso superior adicional (+15 pts)', pontos: 15, requisito: 'VI' },
+            { nome: 'Premiação institucional (+7.5 pts)', pontos: 7.5, requisito: 'III' },
+        ]
+    },
+
+    computed: {
+        nivelBaseDescricao() {
+            const descs = {
+                'RSC I': 'Nível A/B - Ensino Fundamental (10% IQ)',
+                'RSC II': 'Nível C - Ensino Fundamental completo (15% IQ)',
+                'RSC III': 'Nível D - Ensino Médio/Técnico (25% IQ)',
+                'RSC IV': 'Nível E - Graduação Superior (30% IQ)',
+                'RSC V': 'Nível F - Pós-graduação lato sensu (52% IQ)',
+                'RSC VI': 'Nível F - Mestrado (75% IQ)'
+            };
+            return descs[this.nivelBase] || '';
+        },
+
+        pontosTotais() {
+            let total = 0;
+            this.requisitos.forEach(r => {
+                r.pontuacaoObtida = 0;
+                r.perguntas.forEach(p => {
+                    const val = parseFloat(p.valor) || 0;
+                    const pts = (p.pontos || 0) * val;
+                    r.pontuacaoObtida += pts;
+                });
+                total += r.pontuacaoObtida;
+            });
+            return Math.round(total * 10) / 10;
+        },
+
+        criteriosAtendidos() {
+            let count = 0;
+            this.requisitos.forEach(r => {
+                const temPergunta = r.perguntas.some(p => parseFloat(p.valor) > 0);
+                if (temPergunta) count++;
+            });
+            return count;
+        },
+
+        nivelAlcancado() {
+            const pts = this.pontosTotais;
+            const crit = this.criteriosAtendidos;
+            const temII = this.requisitos[1].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temIV = this.requisitos[3].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temV = this.requisitos[4].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0);
+
+            const niveisBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'];
+            const idxBase = niveisBase.indexOf(this.nivelBase);
+            
+            let nivelMax = this.nivelBase;
+            
+            if (pts >= 75 && crit >= 7 && temVI) nivelMax = 'RSC VI';
+            else if (pts >= 52 && crit >= 5 && (temIV || temV || temVI)) nivelMax = 'RSC V';
+            else if (pts >= 30 && crit >= 3 && (temII || temIV || temV || temVI)) nivelMax = 'RSC IV';
+            else if (pts >= 25 && crit >= 2) nivelMax = 'RSC III';
+            else if (pts >= 15 && crit >= 2) nivelMax = 'RSC II';
+            else if (pts >= 10) nivelMax = 'RSC I';
+            
+            const idxMax = niveisBase.indexOf(nivelMax);
+            if (idxMax < idxBase) return this.nivelBase;
+            return nivelMax;
+        },
+
+        metasProximosNiveis() {
+            const pts = this.pontosTotais;
+            const crit = this.criteriosAtendidos;
+            const temII = this.requisitos[1].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temIV = this.requisitos[3].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temV = this.requisitos[4].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0);
+            
+            const niveis = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'];
+            const idxBase = niveis.indexOf(this.nivelBase);
+            const idxAtual = niveis.indexOf(this.nivelAlcancado);
+            
+            const metas = [];
+            const requisitosPorNivel = {
+                'RSC I': { pts: 10, crit: 1, req: '' },
+                'RSC II': { pts: 15, crit: 2, req: '' },
+                'RSC III': { pts: 25, crit: 2, req: '' },
+                'RSC IV': { pts: 30, crit: 3, req: 'II, IV, V ou VI' },
+                'RSC V': { pts: 52, crit: 5, req: 'IV, V ou VI' },
+                'RSC VI': { pts: 75, crit: 7, req: 'VI' }
+            };
+            
+            const cores = {
+                'RSC I': '#0a6b8a',
+                'RSC II': '#0a6b8a',
+                'RSC III': '#0a6b8a',
+                'RSC IV': '#b45309',
+                'RSC V': '#b45309',
+                'RSC VI': '#b45309'
+            };
+            
+            for (let i = idxBase; i < niveis.length; i++) {
+                const nivel = niveis[i];
+                const req = requisitosPorNivel[nivel];
+                const ptsNecessarios = req.pts;
+                const critNecessarios = req.crit;
+                const reqNecessarios = req.req;
+                
+                let atendido = false;
+                let comoConseguir = '';
+                let faltam = '';
+                
+                if (i <= idxAtual) {
+                    atendido = true;
+                    faltam = '✅ Atendido';
+                } else {
+                    const faltaPts = Math.max(0, ptsNecessarios - pts);
+                    const faltaCrit = Math.max(0, critNecessarios - crit);
+                    
+                    let requisitoOk = true;
+                    if (nivel === 'RSC IV') requisitoOk = temII || temIV || temV || temVI;
+                    else if (nivel === 'RSC V') requisitoOk = temIV || temV || temVI;
+                    else if (nivel === 'RSC VI') requisitoOk = temVI;
+                    
+                    const faltas = [];
+                    if (faltaPts > 0) faltas.push(`${faltaPts} pts`);
+                    if (faltaCrit > 0) faltas.push(`${faltaCrit} critérios`);
+                    if (!requisitoOk && reqNecessarios) faltas.push(`requisito ${reqNecessarios}`);
+                    
+                    if (faltas.length === 0) {
+                        atendido = true;
+                        faltam = '✅ Atendido';
+                    } else {
+                        faltam = `Faltam ${faltas.join(' e ')}`;
+                    }
+                    
+                    const sugestoes = [];
+                    if (faltaPts > 0) {
+                        if (nivel === 'RSC VI' || nivel === 'RSC V') {
+                            sugestoes.push('Publique um livro (+20 pts), capítulo (+7.5 pts) ou faça mestrado (+15 pts)');
+                        } else if (nivel === 'RSC IV') {
+                            sugestoes.push('Participe de comissões (+3-4.5 pts) ou coordene projetos (+7.5 pts)');
+                        } else {
+                            sugestoes.push('Participe de comissões (+3 pts) e capacitações (+1 pt)');
+                        }
+                    }
+                    if (faltaCrit > 0) {
+                        sugestoes.push(`Atinja ${critNecessarios} critérios específicos (atualmente ${crit})`);
+                    }
+                    if (!requisitoOk && reqNecessarios) {
+                        sugestoes.push(`Atenda ao requisito ${reqNecessarios} (ex: projetos, produção, direção)`);
+                    }
+                    
+                    comoConseguir = sugestoes.join('; ');
+                }
+                
+                metas.push({
+                    nivel: nivel,
+                    descricao: `${req.pts} pts + ${req.crit} critérios${req.req ? ' + req ' + req.req : ''}`,
+                    cor: cores[nivel] || '#0a6b8a',
+                    atendido: atendido,
+                    faltam: faltam,
+                    comoConseguir: comoConseguir,
+                    ptsNecessarios: req.pts,
+                    critNecessarios: req.crit,
+                    reqNecessarios: req.req,
+                    temII: temII,
+                    temIV: temIV,
+                    temV: temV,
+                    temVI: temVI
+                });
+            }
+            
+            return metas;
+        },
+
+        elegibilidadeInfo() {
+            const nivel = this.nivelAlcancado;
+            const pts = this.pontosTotais;
+            const iq = { 'RSC I': '10%', 'RSC II': '15%', 'RSC III': '25%', 'RSC IV': '30%', 'RSC V': '52%', 'RSC VI': '75%' };
+            
+            if (nivel === 'RSC I') {
+                return {
+                    titulo: '✅ Você está elegível para o RSC I',
+                    descricao: `Parabéns! Com base no nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) e pontuação de ${pts} pontos, você alcançou o RSC I, garantindo ${iq[nivel]} de Incentivo à Qualificação.`,
+                    status: 'Elegível',
+                    icone: 'fa-check-circle',
+                    cor: '#0b6e4f',
+                    classe: 'status-elegivel'
+                };
+            }
+            if (nivel === 'RSC II') {
+                return {
+                    titulo: '✅ Você está elegível para o RSC II',
+                    descricao: `Parabéns! Com base no nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) e pontuação de ${pts} pontos, você alcançou o RSC II, garantindo ${iq[nivel]} de Incentivo à Qualificação.`,
+                    status: 'Elegível',
+                    icone: 'fa-check-circle',
+                    cor: '#0b6e4f',
+                    classe: 'status-elegivel'
+                };
+            }
+            if (nivel === 'RSC III') {
+                return {
+                    titulo: '✅ Você está elegível para o RSC III',
+                    descricao: `Parabéns! Com base no nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) e pontuação de ${pts} pontos, você alcançou o RSC III, garantindo ${iq[nivel]} de Incentivo à Qualificação.`,
+                    status: 'Elegível',
+                    icone: 'fa-check-circle',
+                    cor: '#0b6e4f',
+                    classe: 'status-elegivel'
+                };
+            }
+            if (nivel === 'RSC IV') {
+                return {
+                    titulo: '✅ Você está elegível para o RSC IV',
+                    descricao: `Parabéns! Com base no nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) e pontuação de ${pts} pontos, você alcançou o RSC IV, garantindo ${iq[nivel]} de Incentivo à Qualificação.`,
+                    status: 'Elegível',
+                    icone: 'fa-check-circle',
+                    cor: '#0b6e4f',
+                    classe: 'status-elegivel'
+                };
+            }
+            if (nivel === 'RSC V') {
+                return {
+                    titulo: '✅ Você está elegível para o RSC V',
+                    descricao: `Parabéns! Com base no nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) e pontuação de ${pts} pontos, você alcançou o RSC V, garantindo ${iq[nivel]} de Incentivo à Qualificação.`,
+                    status: 'Elegível',
+                    icone: 'fa-check-circle',
+                    cor: '#0b6e4f',
+                    classe: 'status-elegivel'
+                };
+            }
+            if (nivel === 'RSC VI') {
+                return {
+                    titulo: '🏆 Você está elegível para o RSC VI (Nível Máximo!)',
+                    descricao: `Parabéns! Com base no nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) e pontuação de ${pts} pontos, você alcançou o RSC VI, garantindo ${iq[nivel]} de Incentivo à Qualificação.`,
+                    status: 'Elegível',
+                    icone: 'fa-crown',
+                    cor: '#b45309',
+                    classe: 'status-muito-alta'
+                };
+            }
+            
+            const niveisBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'];
+            const idxBase = niveisBase.indexOf(this.nivelBase);
+            if (idxBase >= 0) {
+                return {
+                    titulo: '✅ Você já é elegível pelo seu nível de escolaridade!',
+                    descricao: `O nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) já garante o enquadramento no ${this.nivelBase}. Continue respondendo para ver se pode alcançar níveis superiores.`,
+                    status: 'Elegível',
+                    icone: 'fa-check-circle',
+                    cor: '#0b6e4f',
+                    classe: 'status-elegivel'
+                };
+            }
+            
+            return {
+                titulo: '⚠️ Selecione o nível de escolaridade do seu cargo',
+                descricao: 'Para determinar sua elegibilidade, primeiro selecione o nível de escolaridade exigido para o seu cargo no início da página.',
+                status: 'Aguardando',
+                icone: 'fa-hourglass-half',
+                cor: '#92400e',
+                classe: 'status-media'
+            };
+        },
+
+        niveisElegibilidade() {
+            const pts = this.pontosTotais;
+            const crit = this.criteriosAtendidos;
+            const temII = this.requisitos[1].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temIV = this.requisitos[3].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temV = this.requisitos[4].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0);
+            const idxBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'].indexOf(this.nivelBase);
+
+            return [
+                { nome: 'RSC I', atendido: pts >= 10 || idxBase >= 0, descricao: '10 pontos' },
+                { nome: 'RSC II', atendido: (pts >= 15 && crit >= 2) || idxBase >= 1, descricao: '15 pts + 2 critérios' },
+                { nome: 'RSC III', atendido: (pts >= 25 && crit >= 2) || idxBase >= 2, descricao: '25 pts + 2 critérios' },
+                { nome: 'RSC IV', atendido: (pts >= 30 && crit >= 3 && (temII || temIV || temV || temVI)) || idxBase >= 3, descricao: '30 pts + 3 critérios + req II/IV/V/VI' },
+                { nome: 'RSC V', atendido: (pts >= 52 && crit >= 5 && (temIV || temV || temVI)) || idxBase >= 4, descricao: '52 pts + 5 critérios + req IV/V/VI' },
+                { nome: 'RSC VI', atendido: (pts >= 75 && crit >= 7 && temVI) || idxBase >= 5, descricao: '75 pts + 7 critérios + req VI' },
+            ];
+        },
+
+        proximoNivel() {
+            const niveis = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'];
+            const atual = this.nivelAlcancado;
+            if (atual === 'RSC VI') return null;
+            const idx = niveis.indexOf(atual);
+            if (idx >= 0 && idx < niveis.length - 1) return niveis[idx + 1];
+            return 'RSC I';
+        },
+
+        pontosProximoNivel() {
+            const niveis = { 'RSC I': 10, 'RSC II': 15, 'RSC III': 25, 'RSC IV': 30, 'RSC V': 52, 'RSC VI': 75 };
+            return niveis[this.proximoNivel] || 0;
+        },
+
+        statusClass() {
+            const pts = this.pontosTotais;
+            if (pts >= 52) return 'status-muito-alta';
+            if (pts >= 25) return 'status-media';
+            return 'status-baixa';
+        },
+
+        statusTexto() {
+            const pts = this.pontosTotais;
+            if (pts >= 52) return '🟢 Muito alta';
+            if (pts >= 25) return '🟡 Média';
+            return '🔴 Baixa';
+        },
+
+        analiseIA() {
+            const pts = this.pontosTotais;
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0);
+            const idxBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'].indexOf(this.nivelBase);
+            
+            if (this.nivelAlcancado === 'RSC VI') {
+                return '🏆 Excelente! Você atingiu o nível máximo do RSC. Continue produzindo e contribuindo para manter sua trajetória de excelência.';
+            }
+            if (pts >= 52) {
+                if (!temVI) return '⭐ Excelente pontuação! Para alcançar o RSC VI, você precisa de pelo menos uma atividade do Requisito VI (Produção Técnico-Científica). Invista em publicações, cursos ou participação em grupos de pesquisa.';
+                return '⭐ Muito bom! Você está próximo do nível máximo. Continue acumulando pontos para consolidar o RSC VI.';
+            }
+            if (idxBase >= 0 && this.nivelAlcancado === this.nivelBase) {
+                return `📌 O nível de escolaridade exigido para seu cargo (${this.nivelBaseDescricao}) já garante o ${this.nivelBase}. Para avançar para níveis superiores, participe de comissões, projetos e produza conhecimento técnico-científico.`;
+            }
+            if (pts >= 10) {
+                return '📌 Você já atingiu a elegibilidade básica. Para avançar, participe de mais comissões, projetos e capacitações.';
+            }
+            return '📌 Você está começando. Priorize atividades de baixo esforço e alta pontuação, como participação em comissões e capacitações.';
+        },
+
+        recomendacao() {
+            const pts = this.pontosTotais;
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0);
+            const idxBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'].indexOf(this.nivelBase);
+            
+            if (this.nivelAlcancado === 'RSC VI') {
+                return '🎉 Você já atingiu o nível máximo! Continue produzindo e mantendo sua trajetória de excelência.';
+            }
+            if (pts >= 52) {
+                if (!temVI) return '📌 Publique um livro (+20 pts), participe de transferência de tecnologia (+20 pts) ou conclua um mestrado (+15 pts).';
+                return '📌 Busque uma premiação internacional (+20 pts) ou nacional (+15 pts) para consolidar sua pontuação.';
+            }
+            if (idxBase >= 0 && this.nivelAlcancado === this.nivelBase) {
+                return `📌 Você já tem o ${this.nivelBase} garantido pela escolaridade do seu cargo. Para subir de nível, participe de comissões (+3 a 4,5 pts), coordene projetos (+7,5 pts) ou produza conhecimento técnico (+4,5 pts).`;
+            }
+            if (pts >= 10) {
+                return '📌 Participe de comissões (+3 a 4,5 pts cada), capacitações (+1 pt cada) e busque designações técnicas (+4,5 pts).';
+            }
+            return '📌 Comece com atividades básicas: participe de comissões (+3 pts), capacitações (+1 pt) e busque designações técnicas (+4,5 pts).';
+        },
+
+        pontosFortes() {
+            const fortes = [];
+            this.requisitos.forEach(r => {
+                const pts = r.pontuacaoObtida || 0;
+                if (pts >= 8) {
+                    fortes.push(`${r.nome} – ${r.titulo} (${pts} pts)`);
+                }
+            });
+            return fortes;
+        },
+
+        pontosFracos() {
+            const fracos = [];
+            this.requisitos.forEach(r => {
+                const pts = r.pontuacaoObtida || 0;
+                const tem = r.perguntas.some(p => parseFloat(p.valor) > 0);
+                if (!tem || pts < 3) {
+                    fracos.push(`${r.nome} – ${r.titulo} (${pts} pts)`);
+                }
+            });
+            return fracos;
+        },
+
+        checklist() {
+            const items = [];
+            const pts = this.pontosTotais;
+            const crit = this.criteriosAtendidos;
+            const temII = this.requisitos[1].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temIV = this.requisitos[3].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temV = this.requisitos[4].perguntas.some(p => parseFloat(p.valor) > 0);
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0);
+            
+            const nivel = this.nivelAlcancado;
+            const idxBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'].indexOf(this.nivelBase);
+            
+            if (nivel === 'RSC VI') {
+                items.push({ texto: '🎉 Você já atingiu o nível máximo!', feito: true });
+                return items;
+            }
+
+            const proximo = this.proximoNivel;
+            if (!proximo) {
+                items.push({ texto: '✅ Todos os requisitos atendidos!', feito: true });
+                return items;
+            }
+
+            const idxProx = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'].indexOf(proximo);
+            if (idxBase >= idxProx) {
+                items.push({ texto: `✅ ${proximo} já garantido pelo nível de escolaridade do seu cargo!`, feito: true });
+            }
+
+            if (proximo === 'RSC II') {
+                items.push({ texto: 'Atingir 15 pontos', feito: pts >= 15 });
+                items.push({ texto: 'Ter 2 critérios específicos', feito: crit >= 2 });
+            } else if (proximo === 'RSC III') {
+                items.push({ texto: 'Atingir 25 pontos', feito: pts >= 25 });
+                items.push({ texto: 'Ter 2 critérios específicos', feito: crit >= 2 });
+            } else if (proximo === 'RSC IV') {
+                items.push({ texto: 'Atingir 30 pontos', feito: pts >= 30 });
+                items.push({ texto: 'Ter 3 critérios específicos', feito: crit >= 3 });
+                items.push({ texto: 'Atender requisitos II, IV, V ou VI', feito: temII || temIV || temV || temVI });
+            } else if (proximo === 'RSC V') {
+                items.push({ texto: 'Atingir 52 pontos', feito: pts >= 52 });
+                items.push({ texto: 'Ter 5 critérios específicos', feito: crit >= 5 });
+                items.push({ texto: 'Atender requisitos IV, V ou VI', feito: temIV || temV || temVI });
+            } else if (proximo === 'RSC VI') {
+                items.push({ texto: 'Atingir 75 pontos', feito: pts >= 75 });
+                items.push({ texto: 'Ter 7 critérios específicos', feito: crit >= 7 });
+                items.push({ texto: 'Atender requisito VI (Produção)', feito: temVI });
+            }
+
+            if (items.length === 0) {
+                items.push({ texto: '🎉 Todos os requisitos para o próximo nível estão atendidos!', feito: true });
+            }
+            return items;
+        }
+    },
+
+    methods: {
+        toggleInfo(pergunta) {
+            this.$set(pergunta, 'mostrarInfo', !pergunta.mostrarInfo);
+        },
+
+        confirmarNivelBase() {
+            if (this.nivelBase) {
+                this.nivelBaseSelecionado = true;
+                if (this.diagnosticoConcluido) {
+                    this.diagnosticoConcluido = false;
+                    this.passoAtual = 0;
+                }
+            }
+        },
+
+        alterarNivelBase() {
+            this.nivelBaseSelecionado = false;
+            this.diagnosticoConcluido = false;
+            this.passoAtual = 0;
+            this.memorialGerado = false;
+            this.mostrarSituacao = false;
+            this.requisitos.forEach(r => {
+                r.perguntas.forEach(p => {
+                    p.valor = 0;
+                    p.mostrarInfo = false;
+                });
+                r.pontuacaoObtida = 0;
+            });
+        },
+
+        atualizarPontuacao() {
+            this.$forceUpdate();
+        },
+
+        avancarPasso() {
+            this.passoAtual++;
+            if (this.passoAtual >= this.requisitos.length) {
+                this.diagnosticoConcluido = true;
+            }
+        },
+
+        finalizarDiagnostico() {
+            this.diagnosticoConcluido = true;
+        },
+
+        reiniciarDiagnostico() {
+            this.passoAtual = 0;
+            this.diagnosticoConcluido = false;
+            this.memorialGerado = false;
+            this.mostrarSimulador = false;
+            this.mostrarSituacao = false;
+            this.pontosSimulados = null;
+            this.nivelSimulado = null;
+            this.requisitos.forEach(r => {
+                r.perguntas.forEach(p => {
+                    p.valor = 0;
+                    p.mostrarInfo = false;
+                });
+                r.pontuacaoObtida = 0;
+            });
+        },
+
+        simularUpload(pergunta) {
+            pergunta.anexo = true;
+            alert('📎 Upload simulado: documento anexado com sucesso!');
+        },
+
+        abrirSituacao() {
+            this.mostrarSituacao = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        fecharSituacao() {
+            this.mostrarSituacao = false;
+            document.body.style.overflow = 'auto';
+        },
+
+        abrirDetalheCriterio(meta) {
+            this.detalheCriterioNivel = meta.nivel;
+            
+            const itens = [];
+            
+            itens.push({
+                nome: 'Pontuação mínima',
+                descricao: `${meta.ptsNecessarios} pontos necessários (atualmente ${this.pontosTotais} pts)`,
+                exemplo: meta.ptsNecessarios > this.pontosTotais ? 
+                    `Faltam ${meta.ptsNecessarios - this.pontosTotais} pontos. Invista em atividades que geram pontos.` : 
+                    '✅ Pontuação já atendida!'
+            });
+            
+            itens.push({
+                nome: 'Critérios específicos',
+                descricao: `${meta.critNecessarios} critérios necessários (atualmente ${this.criteriosAtendidos})`,
+                exemplo: meta.critNecessarios > this.criteriosAtendidos ? 
+                    `Faltam ${meta.critNecessarios - this.criteriosAtendidos} critérios. Participe de comissões, projetos ou produza conhecimento.` : 
+                    '✅ Critérios já atendidos!'
+            });
+            
+            if (meta.reqNecessarios) {
+                let reqAtendido = false;
+                let reqDesc = '';
+                if (meta.nivel === 'RSC IV') {
+                    reqAtendido = meta.temII || meta.temIV || meta.temV || meta.temVI;
+                    reqDesc = 'Requisitos II (Projetos), IV (Responsabilidades), V (Direção) ou VI (Produção)';
+                } else if (meta.nivel === 'RSC V') {
+                    reqAtendido = meta.temIV || meta.temV || meta.temVI;
+                    reqDesc = 'Requisitos IV (Responsabilidades), V (Direção) ou VI (Produção)';
+                } else if (meta.nivel === 'RSC VI') {
+                    reqAtendido = meta.temVI;
+                    reqDesc = 'Requisito VI (Produção Técnico-Científica)';
+                }
+                
+                itens.push({
+                    nome: 'Requisito obrigatório',
+                    descricao: reqDesc,
+                    exemplo: reqAtendido ? '✅ Requisito já atendido!' : 
+                        `❌ Você precisa atender a ${reqDesc}. Invista em atividades como: coordenação de projetos, funções de direção, publicações, mestrado, etc.`
+                });
+            }
+            
+            this.detalheCriterioItens = itens;
+            
+            this.detalheRequisitosStatus = this.requisitos.map(r => ({
+                nome: r.nome,
+                atendido: r.perguntas.some(p => parseFloat(p.valor) > 0)
+            }));
+            
+            this.mostrarDetalheCriterio = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        fecharDetalheCriterio() {
+            this.mostrarDetalheCriterio = false;
+            document.body.style.overflow = 'auto';
+        },
+
+        simularEvolucao() {
+            this.mostrarSimulador = true;
+            this.pontosSimulados = this.pontosTotais;
+            this.nivelSimulado = this.nivelAlcancado;
+        },
+
+        fecharSimulador() {
+            this.mostrarSimulador = false;
+            this.pontosSimulados = null;
+            this.nivelSimulado = null;
+        },
+
+        aplicarSimulacao() {
+            if (!this.simulacaoAtividade) return;
+            const pts = this.simulacaoAtividade.pontos || 0;
+            this.pontosSimulados = Math.round((this.pontosTotais + pts) * 10) / 10;
+            
+            const ptsTemp = this.pontosSimulados;
+            const crit = this.criteriosAtendidos + 1;
+            const temVI = this.requisitos[5].perguntas.some(p => parseFloat(p.valor) > 0) || this.simulacaoAtividade.requisito === 'VI';
+            const temIV = this.requisitos[3].perguntas.some(p => parseFloat(p.valor) > 0) || this.simulacaoAtividade.requisito === 'IV';
+            const temV = this.requisitos[4].perguntas.some(p => parseFloat(p.valor) > 0) || this.simulacaoAtividade.requisito === 'V';
+            const temII = this.requisitos[1].perguntas.some(p => parseFloat(p.valor) > 0) || this.simulacaoAtividade.requisito === 'II';
+            
+            const niveisBase = ['RSC I', 'RSC II', 'RSC III', 'RSC IV', 'RSC V', 'RSC VI'];
+            const idxBase = niveisBase.indexOf(this.nivelBase);
+            
+            let nivelSim = this.nivelBase;
+            if (ptsTemp >= 75 && crit >= 7 && temVI) nivelSim = 'RSC VI';
+            else if (ptsTemp >= 52 && crit >= 5 && (temIV || temV || temVI)) nivelSim = 'RSC V';
+            else if (ptsTemp >= 30 && crit >= 3 && (temII || temIV || temV || temVI)) nivelSim = 'RSC IV';
+            else if (ptsTemp >= 25 && crit >= 2) nivelSim = 'RSC III';
+            else if (ptsTemp >= 15 && crit >= 2) nivelSim = 'RSC II';
+            else if (ptsTemp >= 10) nivelSim = 'RSC I';
+            
+            const idxSim = niveisBase.indexOf(nivelSim);
+            if (idxSim < idxBase) nivelSim = this.nivelBase;
+            
+            this.nivelSimulado = nivelSim;
+            
+            alert(`✅ Simulação aplicada!\nNova pontuação: ${this.pontosSimulados} pts\nNovo nível: ${this.nivelSimulado}`);
+        },
+
+        gerarMemorial() {
+            let texto = `<strong>MEMORIAL DESCRITIVO – RSC-PCCTAE</strong><br><br>`;
+            texto += `Eu, [Nome do Servidor], ocupante do cargo de [Cargo], lotado na [Instituição], venho por meio deste memorial apresentar minha trajetória profissional para fins de concessão do Reconhecimento de Saberes e Competências.<br><br>`;
+            texto += `<strong>Nível de Escolaridade Exigido para o Cargo:</strong> ${this.nivelBaseDescricao}<br><br>`;
+
+            this.requisitos.forEach(r => {
+                const ativas = r.perguntas.filter(p => parseFloat(p.valor) > 0);
+                if (ativas.length > 0) {
+                    texto += `<strong>Requisito ${r.nome} – ${r.titulo}:</strong><br>`;
+                    ativas.forEach(p => {
+                        texto += `• ${p.texto}: ${p.valor} ${p.valor > 1 ? 'ocorrências' : 'ocorrência'} – ${(p.pontos * parseFloat(p.valor)).toFixed(1)} pontos.<br>`;
+                    });
+                    texto += `<br>`;
+                }
+            });
+
+            texto += `<br><strong>Conclusão:</strong> Com base na trajetória descrita e no nível de escolaridade exigido para o cargo (${this.nivelBaseDescricao}), demonstro que minha atuação profissional se alinha ao padrão de conhecimentos e competências necessários para a concessão do RSC-PCCTAE no nível <strong>${this.nivelAlcancado}</strong>.<br><br>`;
+            texto += `Documentos comprobatórios encontram-se anexos ao processo.`;
+
+            this.memorialTexto = texto;
+            this.memorialGerado = true;
+        },
+
+        compartilharWhatsApp() {
+            const nivel = this.nivelAlcancado;
+            const elegivel = nivel !== 'Não elegível';
+            
+            let mensagem = `📋 *RELATÓRIO RSC-PCCTAE - Meu RSC*\n\n`;
+            mensagem += `📚 *Nível de Escolaridade do Cargo:* ${this.nivelBaseDescricao}\n`;
+            mensagem += `🏆 *ELEGIBILIDADE:* ${elegivel ? '✅ ELEGÍVEL' : '❌ NÃO ELEGÍVEL'}\n`;
+            mensagem += `📊 *Nível Alcançado:* ${nivel}\n`;
+            mensagem += `📈 *Pontuação Total:* ${this.pontosTotais} pts\n`;
+            mensagem += `📋 *Critérios Atendidos:* ${this.criteriosAtendidos}\n`;
+            mensagem += `📊 *Status:* ${this.statusTexto}\n`;
+            mensagem += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+            mensagem += `\n🎯 *METAS PARA EVOLUIR:*\n`;
+            
+            this.metasProximosNiveis.forEach(m => {
+                mensagem += `\n*${m.nivel}*: ${m.atendido ? '✅ ATENDIDO' : m.faltam}\n`;
+                if (!m.atendido && m.comoConseguir) {
+                    mensagem += `   💡 Como conseguir: ${m.comoConseguir}\n`;
+                }
+            });
+            
+            mensagem += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+            mensagem += `\n💡 *RECOMENDAÇÃO:*\n${this.recomendacao}\n`;
+            mensagem += `\n📌 *ANÁLISE ESTRATÉGICA:*\n${this.analiseIA}\n`;
+            
+            if (this.pontosFortes.length > 0) {
+                mensagem += `\n✅ *PONTOS FORTES:*\n`;
+                this.pontosFortes.forEach(f => mensagem += `   • ${f}\n`);
+            }
+            
+            if (this.pontosFracos.length > 0) {
+                mensagem += `\n⚠️ *PONTOS DE MELHORIA:*\n`;
+                this.pontosFracos.forEach(f => mensagem += `   • ${f}\n`);
+            }
+            
+            mensagem += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+            mensagem += `📖 Decreto: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/decreto/d13048.htm\n`;
+            mensagem += `\n*Gerado pelo Meu RSC - Copiloto do Servidor* 🚀`;
+            
+            const encoded = encodeURIComponent(mensagem);
+            const url = `https://api.whatsapp.com/send?text=${encoded}`;
+            window.open(url, '_blank');
+        },
+
+        gerarRelatorio() {
+            const nivel = this.nivelAlcancado;
+            const elegivel = nivel !== 'Não elegível';
+            let metasTexto = '';
+            this.metasProximosNiveis.forEach(m => {
+                metasTexto += `${m.nivel}: ${m.atendido ? '✅ ATENDIDO' : m.faltam}\n`;
+                if (!m.atendido && m.comoConseguir) {
+                    metasTexto += `   Como conseguir: ${m.comoConseguir}\n`;
+                }
+            });
+            
+            alert(`📊 RELATÓRIO FINAL RSC-PCCTAE\n\n` +
+                  `========================================\n` +
+                  `📚 Nível de Escolaridade do Cargo: ${this.nivelBaseDescricao}\n` +
+                  `🏆 ELEGIBILIDADE: ${elegivel ? '✅ ELEGÍVEL' : '❌ NÃO ELEGÍVEL'}\n` +
+                  `📊 Nível Alcançado: ${nivel}\n` +
+                  `📈 Pontuação Total: ${this.pontosTotais}\n` +
+                  `📋 Critérios Atendidos: ${this.criteriosAtendidos}\n` +
+                  `📊 Status: ${this.statusTexto}\n` +
+                  `========================================\n\n` +
+                  `📌 METAS PARA EVOLUIR:\n${metasTexto}\n` +
+                  `========================================\n\n` +
+                  `📌 Recomendação: ${this.recomendacao}\n\n` +
+                  `📄 O relatório completo em PDF está sendo gerado...`);
+        }
+    }
+});
+</script>
+</body>
+</html>
